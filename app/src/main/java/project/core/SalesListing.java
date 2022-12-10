@@ -9,6 +9,7 @@ public class SalesListing
 	public boolean onHold;
 	public Seller seller;
 	
+<<<<<<< HEAD
 	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
 	{
 		this.setTextbook(selectedTextbook);
@@ -28,22 +29,43 @@ public class SalesListing
 	public boolean placeOnHold() 
 	{
 		// if book is on hold return availability of false
+=======
+//	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
+//	{
+//		
+//	}
+	public void setTextbook(Textbook selectedTextbook) 
+	{
+		return null;
+	}
+	public boolean placeOnHold() 
+	{
+>>>>>>> 93385e26219bee3d295b1790c028ff03f27cceea
 		if(this.onHold == true)
 		{
 			return false;
 		}
 		else
 		{
+<<<<<<< HEAD
 			setOnHold(true);
+=======
+			setOnHold();
+>>>>>>> 93385e26219bee3d295b1790c028ff03f27cceea
 			return true;
 		}
 
 	}
 	public void setOnHold(boolean holdStatus) 
 	{
+<<<<<<< HEAD
 		this.onHold = holdStatus;
 		ListingDBAdapter.getInstance().uploadHoldStatus(this.listingID);
 		// UpdateListingHoldStatusQuery status = UpdateListingHoldStatusQuery(this.listingID);
+=======
+		this.onHold = !this.onHold;
+		UpdateListingHoldStatusQuery status = UpdateListingHoldStatusQuery(this.listingID);
+>>>>>>> 93385e26219bee3d295b1790c028ff03f27cceea
 	}
 	
 }
