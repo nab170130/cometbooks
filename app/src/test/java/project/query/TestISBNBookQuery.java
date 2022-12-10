@@ -35,7 +35,7 @@ public class TestISBNBookQuery extends TestQueryBase
 
         // Check to see if the correct record is in the query.
         BookRecord record = query.getBookRecord();
-        assertEquals("Nathan Beck", record.author);
+        assertEquals("Nathan Beck", record.authors[0]);
         assertEquals(1, record.edition);
         assertEquals(12345, record.isbn);
         assertEquals("Test Title", record.title);

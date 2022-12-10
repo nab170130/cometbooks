@@ -36,14 +36,14 @@ public class TestUserWishlistQuery extends TestQueryBase
         List<BookRecord> records = query.getWishlistBookRecords();
         
         BookRecord firstBookRecord = records.get(0);
-        assertEquals("Nathan Beck", firstBookRecord.author);
+        assertEquals("Nathan Beck", firstBookRecord.authors[0]);
         assertEquals(1,             firstBookRecord.edition);
         assertEquals(12345,         firstBookRecord.isbn);
         assertEquals("Test Title",  firstBookRecord.title);
         assertEquals(1999,          firstBookRecord.year);
 
         BookRecord secondBookRecord = records.get(1);
-        assertEquals("Nathan Beck",     secondBookRecord.author);
+        assertEquals("Nathan Beck",     secondBookRecord.authors[0]);
         assertEquals(2,                 secondBookRecord.edition);
         assertEquals(12346,             secondBookRecord.isbn);
         assertEquals("Test Title 2",    secondBookRecord.title);

@@ -43,14 +43,14 @@ public class TestSearchBookQuery extends TestQueryBase
         List<BookRecord> records = query.getBookRecords();
         
         BookRecord firstRecord = records.get(0);
-        assertEquals("Nathan Beck", firstRecord.author);
+        assertEquals("Nathan Beck", firstRecord.authors[0]);
         assertEquals(1,             firstRecord.edition);
         assertEquals(12345,         firstRecord.isbn);
         assertEquals("Test Title",  firstRecord.title);
         assertEquals(1999,          firstRecord.year);
 
         BookRecord secondRecord = records.get(1);
-        assertEquals("Nathan Beck", secondRecord.author);
+        assertEquals("Nathan Beck", secondRecord.authors[0]);
         assertEquals(2,             secondRecord.edition);
         assertEquals(12346,         secondRecord.isbn);
         assertEquals("Test Title 2",  secondRecord.title);

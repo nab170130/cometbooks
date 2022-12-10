@@ -44,7 +44,7 @@ public class TestUserTransactionQuery extends TestQueryBase
         ListingRecord firstListingRecord            = listingRecords.get(0);
         TransactionRecord firstTransactionRecord    = transactionRecords.get(0);
 
-        assertEquals("Nathan Beck", firstBookRecord.author);
+        assertEquals("Nathan Beck", firstBookRecord.authors[0]);
         assertEquals(1,             firstBookRecord.edition);
         assertEquals(12345,         firstBookRecord.isbn);
         assertEquals("Test Title",  firstBookRecord.title);
@@ -67,7 +67,7 @@ public class TestUserTransactionQuery extends TestQueryBase
         ListingRecord secondListingRecord            = listingRecords.get(1);
         TransactionRecord secondTransactionRecord    = transactionRecords.get(1);
 
-        assertEquals("Nathan Beck", secondBookRecord.author);
+        assertEquals("Nathan Beck", secondBookRecord.authors[0]);
         assertEquals(2,             secondBookRecord.edition);
         assertEquals(12346,         secondBookRecord.isbn);
         assertEquals("Test Title 2",  secondBookRecord.title);

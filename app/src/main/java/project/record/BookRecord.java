@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class BookRecord 
 {
-    public String   author;
+    public String[] authors;
     public int      edition;
     public long     isbn;
     public String   title;
@@ -16,7 +16,7 @@ public class BookRecord
         // Pull information from the currently focused tuple.
         try
         {
-            author  = resultSet.getString("author");
+            authors = resultSet.getString("author").split(";");
             edition = resultSet.getInt("edition");
             isbn    = resultSet.getLong("isbn");
             title   = resultSet.getString("title");

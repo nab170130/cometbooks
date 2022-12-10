@@ -9,11 +9,13 @@ import java.util.Properties;
 
 import com.mysql.cj.conf.DatabaseUrlContainer;
 
+import project.gui.CometBooksGUI;
+
 public class App {
 
     public static void main(String[] args) 
     {
-        new App().initializeDBState();
+        new CometBooksGUI();
     }
 
     public static final String dbHostDomain = "localhost";
