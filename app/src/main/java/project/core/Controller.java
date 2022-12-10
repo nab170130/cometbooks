@@ -2,62 +2,62 @@ package project.core;
 
 public class Controller 
 {
-  public List<SalesListing> selectedBook(Textbook selectedBook)
+	public List<SalesListing> selectedBook(Textbook selectedBook)
 	{
 		
 	}
-
-    public HashMap<String, String> openSearchDialog()
+	
+	public HashMap<String, String> openSearchDialog()
 	{
 		
 	}
-
-    public List<Textbook> performSearch(HashMap<String, String> searchParameters)
+	
+	public List<Textbook> performSearch(HashMap<String, String> searchParameters)
 	{
 		
 	}
-
-    public List<Conversation> navigateToConversationWindow()
+	
+	public List<Conversation> navigateToConversationWindow()
 	{
 		
 	}
-
-    public List<Transaction> navigateToTransactionsWindow()
+	
+	public List<Transaction> navigateToTransactionsWindow()
 	{
 		
 	}
-
-    public List<Textbook> navigateToBuyWindow()
+	
+	public List<Textbook> navigateToBuyWindow()
 	{
 		
 	}
-
-    public Conversation checkoutListing(SalesListing selectedListing)
+	
+	public Conversation checkoutListing(SalesListing selectedListing)
 	{
 		
 	}
-
-    public List<Textbook> addBookToWishlist(Textbook selectedBook)
+	
+	public List<Textbook> addBookToWishlist(Textbook selectedBook)
 	{
 		
 	}
-
-    public void completeTransaction(Transaction buyerSellerTransaction)
+	
+	public void completeTransaction(Transaction buyerSellerTransaction)
 	{
 		
 	}
-
-    public Conversation sendMessage(Message enteredMessage)
+	
+	public Conversation sendMessage(Message enteredMessage)
 	{
 		
 	}
-
-    public void selectConversation(Conversation conversation)
+	
+	public void selectConversation(Conversation conversation)
 	{
 		
 	}
-
-    public void selectTransaction(Transaction buyerSellerTransaction)
+	
+	public void selectTransaction(Transaction buyerSellerTransaction)
 	{
 		
 	}
