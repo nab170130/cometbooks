@@ -15,7 +15,7 @@ public class User
 
 	public User(String netID) 
 	{
-			
+		account = new Account(netID);
 	}
 
 	public List<Transaction> getTransactions()
@@ -25,11 +25,22 @@ public class User
 
 	public List<Textbook> addBookToWishlist(Textbook selectedBook) 
 	{
-		return null;
+		account.addBookToWishlist(selectedBook);
+		return getRecommendedTextbooks();
 	}
 
 	public List<Textbook> getRecommendedTextbooks()
 	{
-		return new ArrayList<>();
+		List<Textbook> recommendedTextbooks = new ArrayList<>();
+		Schedule userSchedule 				= account.getUserSchedule();
+		Wishlist userWishlist				= account.getWishlist();
+
+		recommendedTextbooks.addAll(userWishlist.textbooks);
+		for(Course course : userSchedule.courses)
+		{
+			recommendedTextbooks.addAll(course.textbooks);
+		}
+
+		return recommendedTextbooks;
 	}
 }
