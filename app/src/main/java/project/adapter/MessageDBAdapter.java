@@ -10,9 +10,16 @@ import project.record.MessageRecord;
 
 public class MessageDBAdapter extends DBAdapter 
 {
+    private static final MessageDBAdapter instance = new MessageDBAdapter(HOST, PORT);
+
     public MessageDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
+    }
+
+    public static MessageDBAdapter getInstance()
+    {
+        return instance;
     }
 
     public Conversation getConversationFromTransaction(long transactionID)

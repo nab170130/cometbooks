@@ -15,9 +15,16 @@ import project.record.TransactionRecord;
 
 public class TransactionDBAdapter extends DBAdapter 
 {
+    private static final TransactionDBAdapter instance = new TransactionDBAdapter(HOST, PORT);
+
     public TransactionDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
+    }
+
+    public static TransactionDBAdapter getInstance()
+    {
+        return instance;
     }
 
     public List<Transaction> getTransactionsWithNetID(String netID)

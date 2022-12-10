@@ -7,6 +7,9 @@ import java.util.Properties;
 
 public abstract class DBAdapter 
 {
+    public static final String HOST = "localhost";
+    public static final int PORT    = 3306;
+
     public Connection connection;
 
     public DBAdapter(String host, int portNumber)
