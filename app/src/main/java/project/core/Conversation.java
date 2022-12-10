@@ -21,7 +21,7 @@ public class Conversation
 
 	}
 
-	public void addMessage(Message enteredMessage) 
+	public void addMessage(Message enteredMessage, User user) 
 	{
 		
 	}

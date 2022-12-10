@@ -1,5 +1,9 @@
 package project.core;
 
+import java.util.Date;
+
+import project.record.MessageRecord;
+
 public class Message 
 {
 	public String messageContent;
@@ -12,23 +16,19 @@ public class Message
 		
 	}
 
-	public Message(Message messageRecord) 
+	public Message(MessageRecord messageRecord) 
 	{ 
-		Message message = new Message(messageRecord);
-		return message;
+		messageContent 	= messageRecord.messageContent;
+		dateTimeSent 	= messageRecord.dateTimeSent;
+		transactionID 	= messageRecord.transactionID;
+		author 			= new User(messageRecord.authorNetID);
 	}
 	
-	public Message(String enteredMesage, long transactionID) 
+	public Message(String enteredMessage, long transactionID_, User author_) 
 	{
-		Message message = new Message(enteredMesage, transactionID);
-		message.setDateAndTime(dateTimeSent);
-		return message;
-		
+		messageContent 	= enteredMessage;
+		dateTimeSent	= new Date().getTime();
+		transactionID 	= transactionID_;
+		author 			= author_;
 	}
-
-	// public setDateAndTime(long dateTimeSent)
-	// {
-		
-	// } do we need to add this?
-	
 }

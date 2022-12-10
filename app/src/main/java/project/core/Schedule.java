@@ -1,19 +1,22 @@
 package project.core;
 
+import java.util.ArrayList;
+
+import project.actor.UTDCoursebook;
+
 public class Schedule 
 {
-	String semester; // do we need this ?
-	ArrayList<Course> courses = new ArrayList<>();
+	public String semester;
+	public ArrayList<Course> courses = new ArrayList<>();
 
 	public Schedule(String netID, String password) 
 	{
-		//where to use these parameters?
-		// I think we need to define getUserSschedule here and call courses class. 
+		Schedule schedule = UTDCoursebook.getUserSchedule(netID, password);
+		semester 	= schedule.semester;
+		courses 	= schedule.courses;
 	}
 
-	public List<Course> getUserSschedule()
+	public Schedule()
 	{
-		Schedule schedule;
-		
 	}
 }
