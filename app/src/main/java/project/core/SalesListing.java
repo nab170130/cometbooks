@@ -13,14 +13,27 @@ public class SalesListing
 //	{
 //		
 //	}
-	public void setTextbook(Textbook selectedTextbook) {
-		
+	public void setTextbook(Textbook selectedTextbook) 
+	{
+		return null;
 	}
-	public void placeOnHold() {
-		
+	public boolean placeOnHold() 
+	{
+		if(this.onHold == true)
+		{
+			return false;
+		}
+		else
+		{
+			setOnHold();
+			return true;
+		}
+
 	}
-	public void setOnHold(boolean holdStatus) {
-		
+	public void setOnHold(boolean holdStatus) 
+	{
+		this.onHold = !this.onHold;
+		UpdateListingHoldStatusQuery status = UpdateListingHoldStatusQuery(this.listingID);
 	}
 	
 }
