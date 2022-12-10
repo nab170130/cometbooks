@@ -1,8 +1,10 @@
 package project.core;
+//import project.record.*;
 
 import java.util.*;
 
 import project.actor.UTDGalaxy;
+import project.adapter.TransactionDBAdapter;
 import project.adapter.WishlistDBAdapter;
 import project.record.AccountRecord;
 
@@ -14,7 +16,7 @@ public class Account
 	public long utdID;
 	private String password;
 	public int currentAcademicYear;
-
+	//Started Making chnages	
 	public Account(String netID) 
 	{
 		this.netID = netID;
@@ -39,17 +41,19 @@ public class Account
 	
 	public Schedule getUserSchedule() 
 	{
-		Schedule schedule = new Schedule(netID, password);
-		return schedule;
+		return new Schedule(this.netID, this.password); // in this returning object we will be having list as  data-memeber for Schedule class, 
+											//which(Data-member in Schedule class) Dhruvi already added in her Git-Branch
 	}
 	
 	public List<Transaction> getTransactionsFromAccount()
-	{
-		return new ArrayList<>(); // dummy list
+	{	
+		// TransactionDBAdapter is class yet to be created
+		return TransactionDBAdapter.getInstance().getTransactionsWithNetID(this.netID); // This method's return type is List<Transaction>
 	}
 	
 	public Wishlist getWishlist() 
 	{
-		return new Wishlist(); // dummy object
+		return WishlistDBAdapter.getInstance().getUserWishlist(this.netID); // WishlistDBAdapter class is yet to create
+
 	}
 }
