@@ -9,14 +9,8 @@ public class Buyer extends User
 		
 	}
 
-	public void addBookToWishlist(Textbook selectedBook) 
+	public Buyer(User userAsBuyer)
 	{
-		
+		this.account = userAsBuyer.account;
 	}
-
-	public List<Textbook> getRecommendedbooks()
-	{
-		return new ArrayList<>();
-	}
-	
 }

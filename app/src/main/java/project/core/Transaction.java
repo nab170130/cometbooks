@@ -21,10 +21,10 @@ public class Transaction
 	}
 	
 	
-//	public Conversation getConversation() 
-//	{//Conversation is a class
-//		
-//	}
+	public Conversation getConversation() 
+	{
+		return null;
+	}
 	
 	public void setTransactionID() 
 	{
