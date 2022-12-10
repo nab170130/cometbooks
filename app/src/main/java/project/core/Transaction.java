@@ -11,8 +11,7 @@ public class Transaction
 	public Transaction(Buyer buyer, SalesListing selectedListing) 
 	{ 
 		this.setTransactionID();
-		TransactionDBAdapter td = new TransactionDBAdapter();
-		td.storeTransaction();//Are we sending this object/Transaction object as an argument of this method???????????????
+		TransactionDBAdapter.getInstance().storeTransaction();//Are we sending this object/Transaction object as an argument of this method???????????????
 	}
 
 	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
@@ -23,8 +22,8 @@ public class Transaction
 	
 	public Conversation getConversation() 
 	{//Conversation is a class
-		MessageDBAdapter md = new MessageDBAdapter(); // Class to be cretaed
-		return md.getCoversationFromTransaction(this.transactionID);
+//		MessageDBAdapter md = new MessageDBAdapter(); // Class to be cretaed
+		return MessageDBAdapter.getInstance().getCoversationFromTransaction(this.transactionID);
 	}
 	
 	// public void setTransactionID() 
@@ -34,13 +33,13 @@ public class Transaction
 	
 	public void markBuyerComplete() 
 	{
-		TransactionDBAdapter td = new TransactionDBAdapter();
-		td.markBuyerComplete(this);
+		//TransactionDBAdapter td = new TransactionDBAdapter();
+		TransactionDBAdapter.getInstance().markBuyerComplete(this);
 	}
 	public void markSellerComplete() 
 	{
-		TransactionDBAdapter td = new TransactionDBAdapter();
-		td.markSellerComplete(this);
+		//TransactionDBAdapter td = new TransactionDBAdapter();
+		TransactionDBAdapter.getInstance().markSellerComplete(this);
 	}
 	
 	public String getTransactionID() //Do we need chnage the data-ttype over here as we delcared ID as a string and In class-diagram we kept return data-type as long

@@ -19,8 +19,8 @@ public class Account
 	
 	public void addBookToWishlist(Textbook selectedBook) 
 	{
-		TransactionDBAdapter td = new TransactionDBAdapter(); // TransactionDBAdapter is class yet to be created
-		td.addBookToWishlist(this.netID, selectedBook);
+		//WishlistDBAdapter td = new TransactionDBAdapter(); // TransactionDBAdapter is class yet to be created
+		WishlistDBAdapter.getInstance().addBookToWishlist(this.netID, selectedBook);
 
 		new Wishlist().add(selectedBook);
 	}
@@ -37,14 +37,13 @@ public class Account
 	
 	public List<Transaction> getTransactionsFromAccount()
 	{	
-		TransactionDBAdapter td = new TransactionDBAdapter(); // TransactionDBAdapter is class yet to be created
-
-		return td.getTransactionWithNetID(this.netID); // This method's return type is List<Transaction>
+		// TransactionDBAdapter is class yet to be created
+		return TransactionDBAdapter.getInstance().getTransactionWithNetID(this.netID); // This method's return type is List<Transaction>
 	}
 	
 	public Wishlist getWishlist() 
 	{
-		return new WishlistDBAdapter().getUserWishlist(this.netID); // WishlistDBAdapter class is yet to create
+		return WishlisDBAdapter.getInstance().getUserWishlist(this.netID); // WishlistDBAdapter class is yet to create
 
 	}
 }
