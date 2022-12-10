@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import project.gui.buywindow.BuyWindowContainer;
 import project.gui.conversationwindow.ConversationWindowContainer;
+import project.gui.loginwindow.LoginWindowContainer;
 import project.gui.transactionwindow.TransactionWindowContainer;
 
 public class CometBooksGUI extends JFrame implements ActionListener
@@ -21,6 +22,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
     // GUI elements for each window
     BuyWindowContainer          buyWindowContainer;
     ConversationWindowContainer conversationWindowContainer;
+    LoginWindowContainer        loginWindowContainer;
     TransactionWindowContainer  transactionWindowContainer;
 
     public CometBooksGUI()
@@ -33,31 +35,16 @@ public class CometBooksGUI extends JFrame implements ActionListener
     {
         if(ev.getSource().equals(buyWindowOption))
         {
-            getContentPane().removeAll();
-            getContentPane().add(menuBar, BorderLayout.NORTH);
-            getContentPane().add(buyWindowContainer, BorderLayout.CENTER);
-            buyWindowContainer.revalidate();
-            buyWindowContainer.repaint();
+            switchToBuyWindow();
         }
         else if(ev.getSource().equals(conversationWindowOption))
         {
-            getContentPane().removeAll();
-            getContentPane().add(menuBar, BorderLayout.NORTH);
-            getContentPane().add(conversationWindowContainer, BorderLayout.CENTER);
-            conversationWindowContainer.revalidate();
-            conversationWindowContainer.repaint();
+            switchToConversationsWindow();
         }
         else if(ev.getSource().equals(transactionWindowOption))
         {
-            getContentPane().removeAll();
-            getContentPane().add(menuBar, BorderLayout.NORTH);
-            getContentPane().add(transactionWindowContainer, BorderLayout.CENTER);
-            transactionWindowContainer.revalidate();
-            transactionWindowContainer.repaint();
+            switchToTransactionsWindow();
         }
-
-        revalidate();
-        repaint();
     }
 
     public void buildGUI()
@@ -65,14 +52,14 @@ public class CometBooksGUI extends JFrame implements ActionListener
         menuBar                     = buildBar();
         buyWindowContainer          = new BuyWindowContainer(); 
         conversationWindowContainer = new ConversationWindowContainer();
+        loginWindowContainer        = new LoginWindowContainer(this);
         transactionWindowContainer  = new TransactionWindowContainer();
 
         setTitle("CometBooks");
-        getContentPane().add(menuBar, BorderLayout.NORTH);
-        getContentPane().add(buyWindowContainer, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         setSize(900, 900);
+        setVisible(true);
+        switchToLoginWindow();
     }
 
     private JMenuBar buildBar()
@@ -95,4 +82,44 @@ public class CometBooksGUI extends JFrame implements ActionListener
 
         return menuBar;
     }
+
+    public void switchToBuyWindow()
+    {
+        getContentPane().removeAll();
+        getContentPane().add(menuBar, BorderLayout.NORTH);
+        getContentPane().add(buyWindowContainer, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
+    public void switchToConversationsWindow()
+    {
+        getContentPane().removeAll();
+        getContentPane().add(menuBar, BorderLayout.NORTH);
+        getContentPane().add(conversationWindowContainer, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
+    public void switchToLoginWindow()
+    {
+        getContentPane().removeAll();
+        getContentPane().add(loginWindowContainer, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
+    public void switchToTransactionsWindow()
+    {
+        getContentPane().removeAll();
+        getContentPane().add(menuBar, BorderLayout.NORTH);
+        getContentPane().add(transactionWindowContainer, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
+
 }
