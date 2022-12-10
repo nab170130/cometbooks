@@ -7,7 +7,6 @@ public class Schedule
 	public Schedule(String netID, String password) 
 	{
 		Schedule schedule = new Schedule(netID, password);
-		sc.add(semester);
-		return schedule;
+		// return schedule;
 	}
 }

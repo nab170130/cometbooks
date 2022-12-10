@@ -13,10 +13,15 @@ public class Message {
 	
 	public Message(String enteredMesage, long transactionID) 
 	{
-		Message message ;
-		message.add(messageContent);
-		message.add(dateTimeSent);
+		Message message = new Message(enteredMesage, transactionID);
+		message.setDateAndTime(dateTimeSent);
 		return message;
+		
 	}
+
+	// public setDateAndTime(long dateTimeSent)
+	// {
+		
+	// } do we need to add this?
 	
 }
