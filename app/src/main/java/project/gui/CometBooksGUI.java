@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import project.gui.buywindow.BuyWindowContainer;
+import project.gui.conversationwindow.ConversationWindowContainer;
+import project.gui.transactionwindow.TransactionWindowContainer;
 
 public class CometBooksGUI extends JFrame implements ActionListener
 {
@@ -16,8 +18,10 @@ public class CometBooksGUI extends JFrame implements ActionListener
     private JMenuItem   conversationWindowOption;
     private JMenuItem   transactionWindowOption;
 
-    // GUI elements for the buy window
-    BuyWindowContainer buyWindowContainer;
+    // GUI elements for each window
+    BuyWindowContainer          buyWindowContainer;
+    ConversationWindowContainer conversationWindowContainer;
+    TransactionWindowContainer  transactionWindowContainer;
 
     public CometBooksGUI()
     {
@@ -27,13 +31,41 @@ public class CometBooksGUI extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ev)
     {
-        System.out.println("test");
+        if(ev.getSource().equals(buyWindowOption))
+        {
+            getContentPane().removeAll();
+            getContentPane().add(menuBar, BorderLayout.NORTH);
+            getContentPane().add(buyWindowContainer, BorderLayout.CENTER);
+            buyWindowContainer.revalidate();
+            buyWindowContainer.repaint();
+        }
+        else if(ev.getSource().equals(conversationWindowOption))
+        {
+            getContentPane().removeAll();
+            getContentPane().add(menuBar, BorderLayout.NORTH);
+            getContentPane().add(conversationWindowContainer, BorderLayout.CENTER);
+            conversationWindowContainer.revalidate();
+            conversationWindowContainer.repaint();
+        }
+        else if(ev.getSource().equals(transactionWindowOption))
+        {
+            getContentPane().removeAll();
+            getContentPane().add(menuBar, BorderLayout.NORTH);
+            getContentPane().add(transactionWindowContainer, BorderLayout.CENTER);
+            transactionWindowContainer.revalidate();
+            transactionWindowContainer.repaint();
+        }
+
+        revalidate();
+        repaint();
     }
 
     public void buildGUI()
     {
-        menuBar             = buildBar();
-        buyWindowContainer  = new BuyWindowContainer(); 
+        menuBar                     = buildBar();
+        buyWindowContainer          = new BuyWindowContainer(); 
+        conversationWindowContainer = new ConversationWindowContainer();
+        transactionWindowContainer  = new TransactionWindowContainer();
 
         setTitle("CometBooks");
         getContentPane().add(menuBar, BorderLayout.NORTH);

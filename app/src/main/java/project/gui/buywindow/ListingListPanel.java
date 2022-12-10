@@ -1,5 +1,6 @@
 package project.gui.buywindow;
 
+import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -7,6 +8,8 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,11 +22,12 @@ import project.core.Account;
 import project.core.SalesListing;
 import project.core.Seller;
 
-public class ListingListPanel extends JPanel implements ListCellRenderer<ListingContainer>
+public class ListingListPanel extends JPanel implements ListCellRenderer<ListingContainer>, ActionListener
 {
+    JButton                 checkoutButton;
     JScrollPane             listingContainerPane;
     JList<ListingContainer> listingList;
-    JTextField              paneTitle;
+    JLabel                  paneTitle;
 
     public ListingListPanel()
     {
@@ -72,6 +76,18 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
         listingList.setListData(allListings);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent ev)
+    {
+        if(ev.getSource().equals(checkoutButton))
+        {
+            // ADD CHECKOUT CONTROLLER CALL!
+            SalesListing listing = listingList.getSelectedValue().salesListing;
+
+            System.out.println(listing.description);
+        }
+    }
+
     public void buildItem()
     {
         listingList = new JList<>();
@@ -80,15 +96,19 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
         listingContainerPane = new JScrollPane(listingList);
         listingContainerPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         
-        paneTitle = new JTextField("Listings");
+        paneTitle = new JLabel("Listings");
         Font titleFont = new Font("Serif", Font.BOLD, 24);
         paneTitle.setFont(titleFont);
         paneTitle.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
-        paneTitle.setHorizontalAlignment(JTextField.CENTER);
+        paneTitle.setHorizontalAlignment(JLabel.CENTER);
+
+        checkoutButton = new JButton("Checkout");
+        checkoutButton.addActionListener(this);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(paneTitle);
         add(listingContainerPane);
+        add(checkoutButton);
     }
 
     @Override

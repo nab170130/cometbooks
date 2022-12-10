@@ -1,5 +1,6 @@
 package project.gui.buywindow;
 
+import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -7,6 +8,8 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,11 +19,13 @@ import javax.swing.ScrollPaneConstants;
 
 import project.core.Textbook;
 
-public class BookListPanel extends JPanel implements ListCellRenderer<BookContainer>
+public class BookListPanel extends JPanel implements ListCellRenderer<BookContainer>, ActionListener
 {
     JScrollPane             bookContainerPane;
     JList<BookContainer>    bookList;
-    JTextField              paneTitle;
+    JLabel                  paneTitle;
+    JButton                 searchButton;
+    JButton                 addWishlistButton;
 
     public BookListPanel()
     {
@@ -53,6 +58,21 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         bookList.setListData(allBooks);
     }
 
+    public void actionPerformed(ActionEvent ev)
+    {
+        if(ev.getSource().equals(searchButton))
+        {
+            SearchDialog searchDialog = new SearchDialog();
+        }
+        else if(ev.getSource().equals(addWishlistButton))
+        {
+            Textbook textbook = bookList.getSelectedValue().textbook;
+
+            // TODO: HAVE ADD WISHLIST BUTTON HERE!
+            System.out.println("WISHLIST ADD: " + textbook.title);
+        }
+    }
+
     public void buildItem()
     {
         bookList = new JList<>();
@@ -61,15 +81,23 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         bookContainerPane = new JScrollPane(bookList);
         bookContainerPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        paneTitle = new JTextField("Textbooks");
+        paneTitle = new JLabel("Textbooks");
         Font titleFont = new Font("Serif", Font.BOLD, 24);
         paneTitle.setFont(titleFont);
         paneTitle.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
-        paneTitle.setHorizontalAlignment(JTextField.CENTER);
+        paneTitle.setHorizontalAlignment(JLabel.CENTER);
         
+        searchButton        = new JButton("Search for Book");
+        addWishlistButton   = new JButton("Add to Wishlist");
+        
+        searchButton.addActionListener(this);
+        addWishlistButton.addActionListener(this);
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(paneTitle);
         add(bookContainerPane);
+        add(searchButton);
+        add(addWishlistButton);
     }
 
     @Override

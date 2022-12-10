@@ -7,7 +7,7 @@ import project.core.SalesListing;
 
 public class ListingContainer extends JPanel
 {
-    private SalesListing salesListing;
+    SalesListing salesListing;
 
     private JTextField  sellerField;
     private JTextField  conditionField;

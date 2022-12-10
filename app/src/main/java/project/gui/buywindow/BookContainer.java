@@ -7,7 +7,7 @@ import project.core.Textbook;
 
 public class BookContainer extends JPanel
 {
-    private Textbook    textbook;
+    Textbook    textbook;
 
     private JTextField  titleField;
     private JTextArea   descriptionField;

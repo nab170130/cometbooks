@@ -2,10 +2,10 @@ package project.core;
 
 public class Transaction 
 {
-	String 			transactionID;
-	String 			completionSatus;
-	SalesListing 	listing;
-	Buyer 			buyer;
+	public String 			transactionID;
+	public String 			completionSatus;
+	public SalesListing 	listing;
+	public Buyer 			buyer;
 	
 	
 	public Transaction(Buyer buyer, SalesListing selectedListing) 

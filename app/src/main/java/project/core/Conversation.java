@@ -1,14 +1,24 @@
 package project.core;
 
+import java.util.List;
+
 public class Conversation 
 {
-	int ID; // What shoul be the data-type over here ?????????
-	
+	public int 				ID;
+	public Transaction 		transaction;
+	public List<Message>	messages;
+
+
 //	public Coversation(List<MessageRecord> messageRecords) 
 //	{
 //		
 //	}
 	
+	public Conversation()
+	{
+
+	}
+
 	public void addMessage(Message enteredMessage) 
 	{
 		

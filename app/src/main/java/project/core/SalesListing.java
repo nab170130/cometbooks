@@ -8,6 +8,7 @@ public class SalesListing
 	public String description;
 	public boolean onHold;
 	public Seller seller;
+	public Textbook textbook;
 	
 //	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
 //	{

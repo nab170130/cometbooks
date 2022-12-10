@@ -1,10 +1,17 @@
 package project.core;
 
-public class Message {
-	String messageContent;
-	long dateTimeSent;
-	long transactionID;
+public class Message 
+{
+	public String messageContent;
+	public long dateTimeSent;
+	public long transactionID;
+	public User author;
 	
+	public Message()
+	{
+		
+	}
+
 	public Message(Message messageRecord) 
 	{ 
 		
