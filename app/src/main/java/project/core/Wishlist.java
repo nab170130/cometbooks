@@ -18,6 +18,7 @@ public class Wishlist
 
 	public void add(Textbook selectedBook) 
 	{
-		
+		textbooks.add(selectedBook);
+		return textbooks;
 	}
 }
