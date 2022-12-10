@@ -14,8 +14,8 @@ public class Transaction
 	
 	public Transaction(Buyer buyer, SalesListing selectedListing) 
 	{ 
-		this.setTransactionID();
-		TransactionDBAdapter.getInstance().storeTransaction(this);//Are we sending this object/Transaction object as an argument of this method???????????????
+		transactionID = 0;
+		transactionID = TransactionDBAdapter.getInstance().storeTransaction(this);//Are we sending this object/Transaction object as an argument of this method???????????????
 	}
 
 	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
@@ -29,11 +29,6 @@ public class Transaction
 //		MessageDBAdapter md = new MessageDBAdapter(); // Class to be cretaed
 		return MessageDBAdapter.getInstance().getConversationFromTransaction(this.transactionID);
 	}
-	
-	// public void setTransactionID() 
-	// {
-		//--------Need to discuus
-	// }
 	
 	public void markBuyerComplete() 
 	{

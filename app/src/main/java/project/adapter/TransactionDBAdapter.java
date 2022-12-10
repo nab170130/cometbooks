@@ -51,11 +51,12 @@ public class TransactionDBAdapter extends DBAdapter
         return transactions;
     }
 
-    public void storeTransaction(Transaction transaction)
+    public long storeTransaction(Transaction transaction)
     {
         TransactionRecord transactionRecord             = new TransactionRecord(transaction);
         CreateTransactionQuery createTransactionQuery   = new CreateTransactionQuery(connection, transactionRecord);
         createTransactionQuery.doQuery();
+        return createTransactionQuery.newTransactionID;
     }
 
     public void markBuyerComplete(Transaction transaction)
