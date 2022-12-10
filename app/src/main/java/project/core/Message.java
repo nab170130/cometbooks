@@ -7,12 +7,16 @@ public class Message {
 	
 	public Message(Message messageRecord) 
 	{ 
-		
+		Message message = new Message(messageRecord);
+		return message;
 	}
 	
 	public Message(String enteredMesage, long transactionID) 
 	{
-		
+		Message message ;
+		message.add(messageContent);
+		message.add(dateTimeSent);
+		return message;
 	}
 	
 }
