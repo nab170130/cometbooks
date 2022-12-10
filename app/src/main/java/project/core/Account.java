@@ -1,4 +1,5 @@
 package project.core;
+//import project.record.*;
 
 import java.util.*;
 
@@ -18,26 +19,32 @@ public class Account
 	
 	public void addBookToWishlist(Textbook selectedBook) 
 	{
-		
+		TransactionDBAdapter td = new TransactionDBAdapter(); // TransactionDBAdapter is class yet to be created
+		td.addBookToWishlist(this.netID, selectedBook);
+
+		new Wishlist().add(selectedBook);
 	}
 
-//	public void setAccountInfo(AccountRecord publicInfoAccountRecord) { // AccountRecord is the class
-//		
-//	}
+	//public void setAccountInfo(AccountRecord publicInfoAccountRecord) { // AccountRecord is not defined in the classDiagram........??????????
+		
+	//}
 	
 	public Schedule getUserSchedule() 
 	{
-		Schedule schedule = new Schedule(netID, password);
-		return schedule;
+		return new Schedule(this.netID, this.password); // in this returning object we will be having list as  data-memeber for Schedule class, 
+											//which(Data-member in Schedule class) Dhruvi already added in her Git-Branch
 	}
 	
 	public List<Transaction> getTransactionsFromAccount()
-	{
-		return new ArrayList<>(); // dummy list
+	{	
+		TransactionDBAdapter td = new TransactionDBAdapter(); // TransactionDBAdapter is class yet to be created
+
+		return td.getTransactionWithNetID(this.netID); // This method's return type is List<Transaction>
 	}
 	
 	public Wishlist getWishlist() 
 	{
-		return new Wishlist(); // dummy object
+		return new WishlistDBAdapter().getUserWishlist(this.netID); // WishlistDBAdapter class is yet to create
+
 	}
 }
