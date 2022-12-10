@@ -1,22 +1,20 @@
 package project.adapter;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public abstract class DBAdapter 
 {
     public Connection connection;
 
-    public DBAdapter(String dbHostDomain, int portNumber)
+    public DBAdapter(String host, int portNumber)
     {
-        /* 
         // Try connecting to the database. First, establish a Properties object for the connection.
         Properties connectionProperties = new Properties();
         connectionProperties.put("user", "root");
         connectionProperties.put("password", "fall2022se6329project");
-
-        // Create a URL string to identify the location of the server.
-        int portNumber  = 3306;
-        String host     = "localhost";
 
         StringBuilder urlStringBuilder = new StringBuilder();
         urlStringBuilder.append("jdbc:mysql://");                // Specify protocol
@@ -37,6 +35,5 @@ public abstract class DBAdapter
         {
             ex.printStackTrace();
         }
-        */
     }
 }

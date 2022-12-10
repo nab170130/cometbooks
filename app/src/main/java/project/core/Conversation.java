@@ -2,6 +2,8 @@ package project.core;
 
 import java.util.List;
 
+import project.record.MessageRecord;
+
 public class Conversation 
 {
 	public int 				ID;
@@ -9,10 +11,10 @@ public class Conversation
 	public List<Message>	messages;
 
 
-//	public Coversation(List<MessageRecord> messageRecords) 
-//	{
-//		
-//	}
+	public Conversation(List<MessageRecord> messageRecords) 
+	{
+		
+	}
 	
 	public Conversation()
 	{

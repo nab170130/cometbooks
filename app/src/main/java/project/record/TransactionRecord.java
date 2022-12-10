@@ -3,6 +3,8 @@ package project.record;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import project.core.Transaction;
+
 public class TransactionRecord 
 {
     public String   buyerNetID;
@@ -23,6 +25,14 @@ public class TransactionRecord
         catch(SQLException ex)
         {
         }
+    }
+
+    public TransactionRecord(Transaction transaction)
+    {
+        buyerNetID          = transaction.buyer.account.netID;
+        completionStatus    = transaction.completionStatus;
+        listingID           = transaction.listing.listingID;
+        transactionID       = transaction.getTransactionID();
     }
 
     public TransactionRecord()

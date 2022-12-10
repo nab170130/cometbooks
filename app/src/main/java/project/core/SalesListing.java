@@ -1,5 +1,7 @@
 package project.core;
 
+import project.record.ListingRecord;
+
 public class SalesListing 
 {
 	public long listingID;
@@ -10,10 +12,16 @@ public class SalesListing
 	public Seller seller;
 	public Textbook textbook;
 	
-//	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
-//	{
-//		
-//	}
+	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
+	{
+		
+	}
+	
+	public SalesListing()
+	{
+		
+	}
+
 	public void setTextbook(Textbook selectedTextbook) {
 		
 	}

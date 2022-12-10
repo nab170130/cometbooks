@@ -1,5 +1,7 @@
 package project.core;
 
+import project.record.BookRecord;
+
 public class Textbook 
 {
 	public long isbn;
@@ -9,11 +11,15 @@ public class Textbook
 	public double suggestedPrice;
 	public String title;
 	
-//	public Textbook(BookRecord bookRecord)
-//	{ //BookRecord is a class
-//		
-//	}
+	public Textbook(BookRecord bookRecord)
+	{
 	
+	}
+	
+	public Textbook()
+	{
+	}
+
 	public double setSuggestedPrice() 
 	{
 		return 0;

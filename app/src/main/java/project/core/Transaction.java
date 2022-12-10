@@ -1,9 +1,11 @@
 package project.core;
 
+import project.record.TransactionRecord;
+
 public class Transaction 
 {
-	public String 			transactionID;
-	public String 			completionSatus;
+	public long				transactionID;
+	public String 			completionStatus;
 	public SalesListing 	listing;
 	public Buyer 			buyer;
 	
@@ -13,10 +15,10 @@ public class Transaction
 		
 	}
 
-//	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
-//	{//TransactionRecord IS A CLASS
-//		
-//	}
+	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
+	{
+
+	}
 	
 	
 //	public Conversation getConversation() 

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import javax.lang.model.util.ElementScanner14;
 
+import project.core.Message;
+
 public class MessageRecord implements Comparable
 {
     public String   authorNetID;
@@ -25,6 +27,14 @@ public class MessageRecord implements Comparable
         catch(SQLException ex)
         {
         }
+    }
+
+    public MessageRecord(Message message)
+    {
+        authorNetID     = message.author.account.netID;
+        dateTimeSent    = message.dateTimeSent;
+        messageContent  = message.messageContent;
+        transactionID   = message.transactionID;
     }
 
     public MessageRecord()
