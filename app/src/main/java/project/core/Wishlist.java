@@ -9,6 +9,7 @@ public class Wishlist
 {
 	public List<Textbook> textbooks;
 	
+
 	public Wishlist(List<BookRecord> wishlistBookRecords)
 	{
 		textbooks = new ArrayList<>();
@@ -20,10 +21,7 @@ public class Wishlist
 		}
 	}
 
-	public Wishlist()
-	{
-	}
-
+	
 	public void add(Textbook selectedBook) 
 	{
 		textbooks.add(selectedBook);

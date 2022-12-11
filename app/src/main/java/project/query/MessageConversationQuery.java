@@ -14,16 +14,19 @@ public class MessageConversationQuery extends Query
     public List<MessageRecord>  retrievedMessageRecords;
     public long                 transactionID;
 
+
     public MessageConversationQuery(Connection dbConnection, long transactionID_)
     {
         super(dbConnection);
         transactionID = transactionID_;
     }
 
+
     public List<MessageRecord> getMessageRecords()
     {
         return retrievedMessageRecords;
     }
+
 
     @Override
     public String getQueryString()
@@ -36,6 +39,7 @@ public class MessageConversationQuery extends Query
 
         return queryStringBuilder.toString();
     }
+
 
     @Override
     public void processResult(ResultSet resultSet)
@@ -58,6 +62,7 @@ public class MessageConversationQuery extends Query
         }
     }
 
+    
     public void setMessageRecords(List<MessageRecord> newMessageRecords)
     {
         retrievedMessageRecords = newMessageRecords;

@@ -19,6 +19,7 @@ public class TestStoreMessageQuery extends TestQueryBase
         initializeDBState();
     }
 
+    
     @Test
     public void testGetQueryString()
     {
@@ -33,6 +34,7 @@ public class TestStoreMessageQuery extends TestQueryBase
 
         assertEquals("INSERT INTO cometbooks.message VALUES (1,'nab170130',20,'Hey, I am present at the library.');", retrievedQueryString);
     }
+
 
     @Test
     public void testDoQuery()

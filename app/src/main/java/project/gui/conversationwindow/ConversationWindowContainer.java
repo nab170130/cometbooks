@@ -1,9 +1,7 @@
 package project.gui.conversationwindow;
 
 import java.awt.GridLayout;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -21,11 +19,13 @@ public class ConversationWindowContainer extends JPanel implements Runnable
 
     Controller controller;
 
+
     public ConversationWindowContainer(Controller controller_)
     {
         controller = controller_;
         buildItem(controller);
     }
+
 
     public void buildItem(Controller controller)
     {
@@ -39,6 +39,7 @@ public class ConversationWindowContainer extends JPanel implements Runnable
         add(conversationViewPanel);
     }
 
+
     public void setConversations(List<Conversation> conversations, Conversation toFocusConversation)
     {
         conversationPanel.setDisplayConversations(conversations, toFocusConversation);
@@ -49,12 +50,14 @@ public class ConversationWindowContainer extends JPanel implements Runnable
         }
     }
 
+
     public void startListeningThread()
     {
         Thread listenForNotifcationThread = new Thread(this);
         listenForNotifcationThread.start();
     }
 
+    
     public void run()
     {
         // Indefinitely accept notification requests from controller's socket.

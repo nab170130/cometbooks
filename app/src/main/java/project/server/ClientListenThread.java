@@ -12,12 +12,14 @@ public class ClientListenThread implements Runnable
     public NotificationServer   notificationServer;
     public Socket               listenSocket;
 
+
     public ClientListenThread(NotificationServer notificationServer_, Socket socket_)
     {
         notificationServer  = notificationServer_;
         listenSocket        = socket_;
     }
 
+    
     public void run()
     {
         try

@@ -11,6 +11,7 @@ public class BookRecord
     public String   title;
     public int      year;
 
+
     public BookRecord(ResultSet resultSet)
     {
         // Pull information from the currently focused tuple.
@@ -25,9 +26,5 @@ public class BookRecord
         catch(SQLException ex)
         {
         }
-    }
-
-    public BookRecord()
-    {
     }
 }

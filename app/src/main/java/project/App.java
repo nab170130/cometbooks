@@ -24,6 +24,7 @@ public class App
         CometBooksGUI cometBooksGUI = new CometBooksGUI(sysController); 
     }
 
+    
     public static void initializeDBStateForDemo()
     {
         // Contains code for initializing the database state for the demonstration. This would not be called in persistent sessions.

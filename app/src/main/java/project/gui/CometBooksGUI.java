@@ -33,11 +33,13 @@ public class CometBooksGUI extends JFrame implements ActionListener
 
     Controller controller;
 
+
     public CometBooksGUI(Controller sysController)
     {
         controller = sysController;
         buildGUI();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -56,6 +58,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         }
     }
 
+
     public void buildGUI()
     {
         menuBar                     = buildBar();
@@ -70,6 +73,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         setVisible(true);
         switchToLoginWindow();
     }
+
 
     private JMenuBar buildBar()
     {
@@ -92,6 +96,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         return menuBar;
     }
 
+
     public void switchToBuyWindow()
     {
         getContentPane().removeAll();
@@ -107,6 +112,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         revalidate();
         repaint();
     }
+
 
     public void switchToConversationsWindow(Conversation conversationFocus)
     {
@@ -125,6 +131,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         repaint();
     }
 
+
     public void switchToLoginWindow()
     {
         getContentPane().removeAll();
@@ -134,6 +141,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         repaint();
     }
 
+    
     public void switchToTransactionsWindow()
     {
         getContentPane().removeAll();

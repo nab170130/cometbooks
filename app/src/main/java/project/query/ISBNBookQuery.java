@@ -11,16 +11,19 @@ public class ISBNBookQuery extends Query
     public long         isbn;
     public BookRecord   storedBookRecord;
 
+
     public ISBNBookQuery(Connection connection, long isbn_)
     {
         super(connection);
         isbn = isbn_;
     }
 
+
     public BookRecord getBookRecord()
     {
         return storedBookRecord;
     }
+
 
     @Override
     public String getQueryString()
@@ -33,6 +36,7 @@ public class ISBNBookQuery extends Query
 
         return queryStringBuilder.toString();
     }
+
 
     @Override
     public void processResult(ResultSet resultSet)
@@ -48,6 +52,7 @@ public class ISBNBookQuery extends Query
         }
     }
 
+    
     public void setBookRecord(BookRecord bookRecord)
     {
         storedBookRecord = bookRecord;

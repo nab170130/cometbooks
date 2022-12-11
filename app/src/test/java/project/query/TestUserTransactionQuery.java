@@ -19,6 +19,7 @@ public class TestUserTransactionQuery extends TestQueryBase
         initializeDBState();
     }
 
+    
     @Test
     public void testGetQueryString()
     {
@@ -27,6 +28,7 @@ public class TestUserTransactionQuery extends TestQueryBase
 
         assertEquals("SELECT * FROM cometbooks.book NATURAL JOIN cometbooks.listing NATURAL JOIN cometbooks.transaction WHERE (buyerNetID = 'nab170130' OR sellerNetID = 'nab170130');", retrievedQueryString);
     }
+
 
     @Test
     public void testDoQuery()

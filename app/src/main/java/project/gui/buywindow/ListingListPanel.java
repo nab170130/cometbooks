@@ -14,17 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 
-import project.core.Textbook;
 import project.gui.CometBooksGUI;
-import project.core.Account;
 import project.core.Controller;
 import project.core.Conversation;
 import project.core.SalesListing;
-import project.core.Seller;
 
 public class ListingListPanel extends JPanel implements ListCellRenderer<ListingContainer>, ActionListener
 {
@@ -37,12 +33,14 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
 
     Controller      controller;
 
+
     public ListingListPanel(Controller sysController, CometBooksGUI parentContainer_)
     {
         controller      = sysController;
         parentContainer = parentContainer_;
         buildItem();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -63,6 +61,7 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
             }
         }
     }
+
 
     public void buildItem()
     {
@@ -87,6 +86,7 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
         add(checkoutButton);
     }
 
+
     @Override
     public Component getListCellRendererComponent(JList<? extends ListingContainer> list, ListingContainer value, int index, boolean isSelected, boolean cellHasFocus)
     {
@@ -104,6 +104,7 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
         return renderItem;
     }
 
+    
     public void setDisplayListings(List<SalesListing> listings)
     {
         Vector<ListingContainer> listingContainers = new Vector<>();

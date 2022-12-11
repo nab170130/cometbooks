@@ -13,6 +13,7 @@ public class ListingRecord
     public boolean  onHold;
     public String   sellerNetID;
 
+
     public ListingRecord(ResultSet resultSet)
     {
         // Pull information from the currently focused tuple.
@@ -29,9 +30,5 @@ public class ListingRecord
         catch(SQLException ex)
         {
         }
-    }
-
-    public ListingRecord()
-    {
     }
 }

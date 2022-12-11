@@ -13,11 +13,13 @@ public class UserWishlistQuery extends Query
     public List<BookRecord> storedBookRecords;
     public String           userNetID;
 
+
     public UserWishlistQuery(Connection dbConnection, String netID)
     {
         super(dbConnection);
         userNetID = netID;
     }
+
 
     @Override
     public String getQueryString()
@@ -31,10 +33,12 @@ public class UserWishlistQuery extends Query
         return queryStringBuilder.toString();
     }
 
+
     public List<BookRecord> getWishlistBookRecords()
     {
         return storedBookRecords;
     }
+
 
     @Override
     public void processResult(ResultSet resultSet)
@@ -54,6 +58,7 @@ public class UserWishlistQuery extends Query
         }
     }
 
+    
     public void setBookRecords(List<BookRecord> bookRecords)
     {
         storedBookRecords = bookRecords;

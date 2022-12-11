@@ -18,6 +18,7 @@ public class TestSearchBookQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -31,6 +32,7 @@ public class TestSearchBookQuery extends TestQueryBase
         assertEquals("SELECT * FROM cometbooks.book WHERE author = 'Nathan Beck' AND isbn = 12345;", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

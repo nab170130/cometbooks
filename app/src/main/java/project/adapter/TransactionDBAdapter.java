@@ -17,15 +17,18 @@ public class TransactionDBAdapter extends DBAdapter
 {
     private static final TransactionDBAdapter instance = new TransactionDBAdapter(HOST, PORT);
 
+    
     public TransactionDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
     }
 
+
     public static TransactionDBAdapter getInstance()
     {
         return instance;
     }
+
 
     public List<Transaction> getTransactionsWithNetID(String netID)
     {
@@ -51,6 +54,7 @@ public class TransactionDBAdapter extends DBAdapter
         return transactions;
     }
 
+
     public long storeTransaction(Transaction transaction)
     {
         TransactionRecord transactionRecord             = new TransactionRecord(transaction);
@@ -59,11 +63,13 @@ public class TransactionDBAdapter extends DBAdapter
         return createTransactionQuery.newTransactionID;
     }
 
+
     public void markBuyerComplete(Transaction transaction)
     {
         UpdateTransactionStatusQuery updateTransactionStatusQuery = new UpdateTransactionStatusQuery(connection, true, transaction.transactionID);
         updateTransactionStatusQuery.doQuery();
     }
+
 
     public void markSellerComplete(Transaction transaction)
     {

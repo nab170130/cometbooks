@@ -5,7 +5,6 @@ import java.util.List;
 
 import project.core.SalesListing;
 import project.core.Textbook;
-import project.core.Wishlist;
 import project.query.ISBNListingQuery;
 import project.query.UpdateListingHoldStatusQuery;
 import project.record.ListingRecord;
@@ -14,15 +13,18 @@ public class ListingDBAdapter extends DBAdapter
 {
     private static final ListingDBAdapter instance = new ListingDBAdapter(HOST, PORT);
 
+    
     public ListingDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
     }
 
+
     public static ListingDBAdapter getInstance()
     {
         return instance;
     }
+
 
     public List<SalesListing> getMatchingListings(Textbook textbook)
     {
@@ -42,6 +44,7 @@ public class ListingDBAdapter extends DBAdapter
 
         return listings;
     }
+
 
     public void updateHoldStatus(long listingID)
     {

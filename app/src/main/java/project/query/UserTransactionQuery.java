@@ -17,21 +17,25 @@ public class UserTransactionQuery extends Query
     public List<TransactionRecord>  transactionRecords;
     public String                   userNetID;
 
+
     public UserTransactionQuery(Connection connection, String netID)
     {
         super(connection);
         userNetID = netID;
     }
 
+
     public List<BookRecord> getBookRecords()
     {
         return bookRecords;
     }
 
+
     public List<ListingRecord> getListingRecords()
     {
         return listingRecords;
     }
+
 
     @Override
     public String getQueryString()
@@ -47,10 +51,12 @@ public class UserTransactionQuery extends Query
         return queryStringBuilder.toString();
     }
 
+
     public List<TransactionRecord> getTransactionRecords()
     {
         return transactionRecords;
     }
+
 
     @Override
     public void processResult(ResultSet resultSet)
@@ -81,16 +87,19 @@ public class UserTransactionQuery extends Query
         }
     }
 
+
     public void storeBookRecords(List<BookRecord> bookRecords_)
     {
         bookRecords = bookRecords_;
     }
+
 
     public void storeListingRecords(List<ListingRecord> listingRecords_)
     {
         listingRecords = listingRecords_;
     }
 
+    
     public void storeTransactionRecords(List<TransactionRecord> transactionRecords_)
     {
         transactionRecords = transactionRecords_;

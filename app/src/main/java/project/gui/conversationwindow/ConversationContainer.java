@@ -17,11 +17,13 @@ public class ConversationContainer extends JPanel
 
     Conversation conversation;
 
+
     public ConversationContainer(Conversation conversation_)
     {
         buildItem();
         setConversation(conversation_);
     }
+
 
     public void buildItem()
     {
@@ -47,6 +49,7 @@ public class ConversationContainer extends JPanel
         setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
+
     public void setElementBackgrounds(Color color)
     {
         bookField.setBackground(color);
@@ -54,6 +57,7 @@ public class ConversationContainer extends JPanel
         recentMessageField.setBackground(color);
     }
 
+    
     public void setConversation(Conversation conversation_)
     {
         conversation = conversation_;

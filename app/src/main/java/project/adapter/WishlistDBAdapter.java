@@ -13,15 +13,18 @@ public class WishlistDBAdapter extends DBAdapter
 {
     private static final WishlistDBAdapter instance = new WishlistDBAdapter(HOST, PORT);
 
+
     public WishlistDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
     }
 
+
     public static WishlistDBAdapter getInstance()
     {
         return instance;
     }
+
 
     public Wishlist getUserWishlist(String netID)
     {
@@ -34,6 +37,7 @@ public class WishlistDBAdapter extends DBAdapter
         return wishlist;
     }
 
+    
     public void addBookToWishlist(String netID, Textbook textbook)
     {
         WishlistRecord wishlistRecord       = new WishlistRecord(netID, textbook.isbn);

@@ -15,6 +15,7 @@ public class Course
 	public String 			name;
 	public List<Textbook> 	textbooks;
 	
+	
 	public Course(CourseRecord courseRecord) throws NoCourseException
 	{
 		copyRecordAttributes(courseRecord);
@@ -31,6 +32,7 @@ public class Course
 		}
 	}
 	
+
 	private void copyRecordAttributes(CourseRecord courseRecord) 
 	{
 		courseCode 	= courseRecord.courseCode;

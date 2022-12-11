@@ -17,6 +17,7 @@ public class TestUserWishlistQuery extends TestQueryBase
         initializeDBState();
     }
 
+    
     @Test
     public void testGetQueryString()
     {
@@ -25,6 +26,7 @@ public class TestUserWishlistQuery extends TestQueryBase
 
         assertEquals("SELECT * FROM cometbooks.wishlist NATURAL JOIN cometbooks.book WHERE netID = 'nab170130';", retrievedQueryString);
     }
+
 
     @Test
     public void testDoQuery()

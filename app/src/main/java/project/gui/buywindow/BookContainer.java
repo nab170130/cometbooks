@@ -12,11 +12,13 @@ public class BookContainer extends JPanel
     private JTextField  titleField;
     private JTextArea   descriptionField;
 
+
     public BookContainer(Textbook initialTextbook)
     {
         buildItem();
         setTextbook(initialTextbook);
     }
+
 
     public void buildItem()
     {
@@ -38,12 +40,14 @@ public class BookContainer extends JPanel
         setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
+
     public void setElementBackgrounds(Color color)
     {
         titleField.setBackground(color);
         descriptionField.setBackground(color);
     }
 
+    
     public void setTextbook(Textbook textbook_)
     {
         textbook = textbook_;

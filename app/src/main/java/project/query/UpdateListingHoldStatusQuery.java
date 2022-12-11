@@ -7,11 +7,13 @@ public class UpdateListingHoldStatusQuery extends Query
 {
     public long listingID;
     
+
     public UpdateListingHoldStatusQuery(Connection dbConnection, long listingID_)
     {
         super(dbConnection);
         listingID = listingID_;
     }
+
 
     @Override
     public String getQueryString()
@@ -25,6 +27,7 @@ public class UpdateListingHoldStatusQuery extends Query
         return queryStringBuilder.toString();
     }
 
+    
     @Override
     public void processResult(ResultSet resultSet)
     {

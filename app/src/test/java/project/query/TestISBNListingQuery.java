@@ -17,6 +17,7 @@ public class TestISBNListingQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -26,6 +27,7 @@ public class TestISBNListingQuery extends TestQueryBase
         assertEquals("SELECT * FROM cometbooks.listing WHERE isbn = 12345;", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

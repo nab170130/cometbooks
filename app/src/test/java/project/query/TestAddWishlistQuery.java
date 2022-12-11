@@ -19,6 +19,7 @@ public class TestAddWishlistQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -29,6 +30,7 @@ public class TestAddWishlistQuery extends TestQueryBase
         assertEquals(retrievedQueryString, "INSERT INTO cometbooks.wishlist VALUES ('nab170130',12345);");
     }
 
+    
     @Test
     public void testDoQuery()
     {

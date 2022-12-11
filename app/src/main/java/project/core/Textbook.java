@@ -9,11 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import javax.lang.model.util.ElementScanner14;
-
 import com.google.gson.Gson;
 
-import project.actor.ThirdPartyVendor;
 import project.adapter.ListingDBAdapter;
 
 public class Textbook implements Comparable<Textbook>
@@ -28,9 +25,6 @@ public class Textbook implements Comparable<Textbook>
 	private static final String INITIAL_API_ENDPOINT 	= "https://booksrun.com/api/v3/price/buy/";
     private static final String API_KEY               	= "id1tlyu4fvg8i2ua5t68";
 
-	public Textbook()
-	{
-	}
 
 	public int compareTo(Textbook other)
 	{
@@ -48,10 +42,12 @@ public class Textbook implements Comparable<Textbook>
 		}
 	}
 
+
 	public Textbook(BookRecord bookRecord)
 	{ 
 		copyRecordAttributes(bookRecord);
 	}
+
 
 	public void copyRecordAttributes(BookRecord bookRecord)
 	{
@@ -62,11 +58,13 @@ public class Textbook implements Comparable<Textbook>
 		this.title 		= bookRecord.title;
 	}
 
+
 	public List<SalesListing> getMatchingListings()
 	{
 		setSuggestedPrice();
 		return ListingDBAdapter.getInstance().getMatchingListings(this);
 	}
+	
 	
 	public double setSuggestedPrice() 
 	{
@@ -76,11 +74,9 @@ public class Textbook implements Comparable<Textbook>
         {
             URL url = new URL(endpoint);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            System.out.println(connection.getResponseCode());
             
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String res = reader.readLine().replace("\"new\"", "\"new_\"");
-            System.out.println(res);
             reader.close();
 
             Gson gson = new Gson();
@@ -89,7 +85,6 @@ public class Textbook implements Comparable<Textbook>
         }
         catch(Exception ex)
         {
-			ex.printStackTrace();
         }
 
 		return suggestedPrice;

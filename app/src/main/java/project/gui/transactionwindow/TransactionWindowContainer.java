@@ -2,7 +2,6 @@ package project.gui.transactionwindow;
 
 import java.awt.GridLayout;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.JPanel;
 
@@ -17,10 +16,12 @@ public class TransactionWindowContainer extends JPanel
     public TransactionListPanel transactionPanel;
     public TransactionViewPanel transactionViewPanel;
 
+
     public TransactionWindowContainer(Controller controller)
     {
         buildItem(controller);
     }
+
 
     public void buildItem(Controller controller)
     {
@@ -34,6 +35,7 @@ public class TransactionWindowContainer extends JPanel
         add(transactionViewPanel);
     }
 
+    
     public void setTransactions(List<Transaction> transactions)
     {
         transactionPanel.setDisplayTransactions(transactions);

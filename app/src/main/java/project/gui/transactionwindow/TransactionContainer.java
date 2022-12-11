@@ -18,11 +18,13 @@ public class TransactionContainer extends JPanel
     
     Transaction transaction;
 
+
     public TransactionContainer(Transaction transaction_)
     {
         buildItem();
         setTransaction(transaction_);
     }
+
 
     public void buildItem()
     {
@@ -48,6 +50,7 @@ public class TransactionContainer extends JPanel
         setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
+
     public void setElementBackgrounds(Color color)
     {
         bookTitle.setBackground(color);
@@ -55,6 +58,7 @@ public class TransactionContainer extends JPanel
         sellerName.setBackground(color);
     }
 
+    
     public void setTransaction(Transaction conversation_)
     {
         transaction = conversation_;

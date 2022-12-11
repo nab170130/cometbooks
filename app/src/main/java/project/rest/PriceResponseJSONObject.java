@@ -4,6 +4,7 @@ public class PriceResponseJSONObject
 {
     ResultField result;
 
+    
     class ResultField
     {
         OffersField offers;
@@ -23,6 +24,7 @@ public class PriceResponseJSONObject
             }
         }
     }
+
 
     public double getPrice()
     {

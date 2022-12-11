@@ -5,17 +5,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.lang.model.util.ElementScanner14;
-
 public abstract class Query
 { 
     private Connection dbConnection;
     private Statement  statement;
 
+
     public Query(Connection dbConnection_)
     {
         dbConnection = dbConnection_;
     }
+
 
     public void closeStatement()
     {
@@ -31,6 +31,7 @@ public abstract class Query
         }
     }
 
+
     public void doQuery()
     {
         String queryToExecute   = getQueryString();
@@ -38,6 +39,7 @@ public abstract class Query
         processResult(resultOfQuery);
         closeStatement();
     }
+
 
     public ResultSet executeSQL(String queryToExecute)
     {
@@ -63,7 +65,9 @@ public abstract class Query
         return resultOfQuery;
     }
 
+
     public abstract String getQueryString();
 
+    
     public abstract void processResult(ResultSet queryResult);
 }

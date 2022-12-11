@@ -1,5 +1,4 @@
 package project.core;
-//import project.record.*;
 
 import java.util.*;
 
@@ -19,7 +18,7 @@ public class Account
 	public long utdID;
 	private String password;
 	public int currentAcademicYear;
-	//Started Making chnages	
+
 
 	public Account(String netID) throws NoAccountException
 	{
@@ -27,6 +26,7 @@ public class Account
 		AccountRecord record = UTDGalaxy.getPublicAccountInfo(netID);
 		setAccountInfo(record);
 	}
+
 
 	public Account(String netID, String password) throws NoAccountException
 	{
@@ -36,10 +36,12 @@ public class Account
 		setAccountInfo(record);
 	}
 	
+
 	public void addBookToWishlist(Textbook selectedBook) 
 	{
 		WishlistDBAdapter.getInstance().addBookToWishlist(netID, selectedBook);
 	}
+
 
 	public void setAccountInfo(AccountRecord publicInfoAccountRecord) 
 	{ 
@@ -51,21 +53,22 @@ public class Account
 		this.currentAcademicYear 	= publicInfoAccountRecord.currentAcademicYear;
 	}
 	
+
 	public Schedule getUserSchedule() throws NoScheduleException, NoCourseException
 	{
-		return new Schedule(this.netID, this.password); // in this returning object we will be having list as  data-memeber for Schedule class, 
-											//which(Data-member in Schedule class) Dhruvi already added in her Git-Branch
+		return new Schedule(this.netID, this.password);
 	}
 	
+
 	public List<Transaction> getTransactionsFromAccount()
 	{	
-		// TransactionDBAdapter is class yet to be created
-		return TransactionDBAdapter.getInstance().getTransactionsWithNetID(this.netID); // This method's return type is List<Transaction>
+		return TransactionDBAdapter.getInstance().getTransactionsWithNetID(this.netID);
 	}
+	
 	
 	public Wishlist getWishlist() 
 	{
-		return WishlistDBAdapter.getInstance().getUserWishlist(this.netID); // WishlistDBAdapter class is yet to create
+		return WishlistDBAdapter.getInstance().getUserWishlist(this.netID);
 
 	}
 }

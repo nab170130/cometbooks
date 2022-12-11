@@ -13,6 +13,7 @@ public class NotificationServer
 
     public static final int SERVER_PORT = 54321;
 
+
     public NotificationServer()
     {
         try
@@ -25,16 +26,19 @@ public class NotificationServer
         }
     }
 
+
     public synchronized void addNetIDOutputWriterMapping(String netID, BufferedWriter outputWriter)
     {
         netIDToOutputWriter.put(netID, outputWriter);
     }
+
 
     public synchronized void removeNetIDOutputWriterMapping(String netID)
     {
         netIDToOutputWriter.remove(netID);
     }
 
+    
     public void acceptNewConnections()
     {
         while(true)

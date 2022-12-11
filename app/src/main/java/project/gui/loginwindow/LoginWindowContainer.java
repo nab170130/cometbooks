@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 import project.core.Controller;
 import project.gui.CometBooksGUI;
-import project.gui.buywindow.BuyWindowContainer;
 
 public class LoginWindowContainer extends JPanel implements ActionListener
 {
@@ -26,6 +25,7 @@ public class LoginWindowContainer extends JPanel implements ActionListener
 
     Controller controller;
 
+
     public LoginWindowContainer(CometBooksGUI cometBooksGUI_, Controller controller_)
     {
         cometBooksGUI   = cometBooksGUI_;
@@ -33,6 +33,7 @@ public class LoginWindowContainer extends JPanel implements ActionListener
         buildItem();
     }
 
+    
     @Override
     public void actionPerformed(ActionEvent ev)
     {
@@ -55,6 +56,7 @@ public class LoginWindowContainer extends JPanel implements ActionListener
             }
         }
     }
+
 
     public void buildItem()
     {

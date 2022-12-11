@@ -13,15 +13,18 @@ public class BookDBAdapter extends DBAdapter
 {
     private static final BookDBAdapter instance = new BookDBAdapter(HOST, PORT);
 
+    
     public BookDBAdapter(String host, int portNumber)
     {
         super(host, portNumber);
     }
 
+
     public static BookDBAdapter getInstance()
     {
         return instance;
     }
+
 
     public List<Textbook> getMatchingBooks(HashMap<String, String> searchParameters)
     {
@@ -40,6 +43,7 @@ public class BookDBAdapter extends DBAdapter
 
         return textbooks;
     }
+
 
     public Textbook getBookFromISBN(long isbnNumber)
     {

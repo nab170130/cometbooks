@@ -1,7 +1,5 @@
 package project.actor;
 
-import javax.lang.model.util.ElementScanner14;
-
 import project.core.Course;
 import project.core.Schedule;
 import project.record.CourseRecord;
@@ -44,6 +42,7 @@ public class UTDCoursebook
         return userSchedule;
     }    
 
+    
     public static long[] getTextbooks(Course course) throws NoCourseException
     {
         if(course.courseCode == 10000)

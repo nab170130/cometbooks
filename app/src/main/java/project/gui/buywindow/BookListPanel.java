@@ -4,7 +4,6 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,13 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import org.w3c.dom.Text;
 
 import project.core.Controller;
 import project.core.SalesListing;
@@ -39,12 +35,14 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
 
     Controller controller;
 
+
     public BookListPanel(Controller sysController, ListingListPanel listingPanel_)
     {
         controller      = sysController;
         listingPanel    = listingPanel_;
         buildItem();
     }
+
 
     public void actionPerformed(ActionEvent ev)
     {
@@ -61,6 +59,7 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
             setDisplayTextbooks(newRecList);
         }
     }
+
 
     public void buildItem()
     {
@@ -90,6 +89,7 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         add(addWishlistButton);
     }
 
+
     @Override
     public Component getListCellRendererComponent(JList<? extends BookContainer> list, BookContainer value, int index, boolean isSelected, boolean cellHasFocus)
     {
@@ -107,6 +107,7 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         return renderItem;
     }
 
+
     public void setDisplayTextbooks(List<Textbook> textbooks)
     {
         Vector<BookContainer> bookContainers = new Vector<>();
@@ -120,6 +121,7 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         bookList.setListData(bookContainers);
     }
 
+    
     @Override
     public void valueChanged(ListSelectionEvent ev)
     {

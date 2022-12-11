@@ -17,6 +17,7 @@ public class TestUpdateTransactionStatusQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -30,6 +31,7 @@ public class TestUpdateTransactionStatusQuery extends TestQueryBase
         assertEquals("UPDATE cometbooks.transaction SET completionStatus = CONCAT(completionStatus, 'seller') WHERE transactionID = 1;", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

@@ -10,11 +10,7 @@ public class Message
 	public long dateTimeSent;
 	public long transactionID;
 	public User author;
-	
-	public Message()
-	{
-		
-	}
+
 
 	public Message(MessageRecord messageRecord) 
 	{ 
@@ -30,6 +26,7 @@ public class Message
 		{
 		}
 	}
+	
 	
 	public Message(String enteredMessage, long transactionID_, User author_) 
 	{

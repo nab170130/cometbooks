@@ -12,11 +12,7 @@ public class SalesListing
 	public boolean onHold;
 	public Seller seller;
 	public Textbook textbook;
-	
-	public SalesListing()
-	{
-		
-	}
+
 
 	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
 	{
@@ -37,16 +33,15 @@ public class SalesListing
 		this.onHold = listingRecord.onHold;
 	}
 
-	// Do we need to use the textbook object parameter?
-	// What is the purpose of setTextbook method?
+
 	public void setTextbook(Textbook selectedTextbook) 
 	{
 		this.textbook = selectedTextbook;
 	}
 
+
 	public boolean placeOnHold() 
 	{
-		// if book is on hold return availability of false
 		if(this.onHold == true)
 		{
 			return false;
@@ -58,6 +53,8 @@ public class SalesListing
 		}
 
 	}
+	
+	
 	public void setOnHold(boolean holdStatus) 
 	{
 		this.onHold = holdStatus;

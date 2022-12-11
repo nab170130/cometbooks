@@ -12,10 +12,12 @@ public class FailDialog extends JDialog implements ActionListener
     JLabel  failLabel;
     JButton confirmButton;
 
+
     public FailDialog()
     {
         buildItem();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -26,6 +28,7 @@ public class FailDialog extends JDialog implements ActionListener
         }
     }
 
+    
     public void buildItem()
     {
 

@@ -15,11 +15,13 @@ public class ListingContainer extends JPanel
     private JTextField  holdStatusField;
     private JTextArea   descriptionField;
 
+
     public ListingContainer(SalesListing initialListing)
     {
         buildItem();
         setListing(initialListing);
     }
+
 
     public void buildItem()
     {
@@ -53,6 +55,7 @@ public class ListingContainer extends JPanel
         setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
     }
 
+
     public void setElementBackgrounds(Color color)
     {
         sellerField.setBackground(color);
@@ -62,6 +65,7 @@ public class ListingContainer extends JPanel
         descriptionField.setBackground(color);
     }
 
+    
     public void setListing(SalesListing listing_)
     {
         salesListing = listing_;

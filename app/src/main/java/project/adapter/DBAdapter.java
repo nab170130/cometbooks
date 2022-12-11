@@ -12,6 +12,7 @@ public abstract class DBAdapter
 
     public Connection connection;
 
+    
     public DBAdapter(String host, int portNumber)
     {
         // Try connecting to the database. First, establish a Properties object for the connection.

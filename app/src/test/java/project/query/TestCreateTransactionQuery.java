@@ -19,6 +19,7 @@ public class TestCreateTransactionQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -34,6 +35,7 @@ public class TestCreateTransactionQuery extends TestQueryBase
         assertEquals("INSERT INTO cometbooks.transaction VALUES (0,1,'','xyz654321');", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

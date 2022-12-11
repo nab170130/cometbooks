@@ -22,6 +22,7 @@ public class Transaction
 		transactionID = TransactionDBAdapter.getInstance().storeTransaction(this);
 	}
 
+
 	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
 	{
 		try
@@ -42,6 +43,7 @@ public class Transaction
 		return MessageDBAdapter.getInstance().getConversationFromTransaction(this);
 	}
 	
+
 	public void markBuyerComplete() 
 	{
 		TransactionDBAdapter.getInstance().markBuyerComplete(this);
@@ -52,6 +54,7 @@ public class Transaction
 		}
 	}
 
+
 	public void markSellerComplete() 
 	{
 		TransactionDBAdapter.getInstance().markSellerComplete(this);
@@ -61,6 +64,7 @@ public class Transaction
 			completionStatus = completionStatus + "seller";
 		}
 	}
+	
 	
 	public long getTransactionID()
 	{

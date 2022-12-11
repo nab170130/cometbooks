@@ -1,9 +1,7 @@
 package project.gui.conversationwindow;
 
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -13,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import project.core.Controller;
@@ -35,11 +32,13 @@ public class ConversationViewPanel extends JPanel implements ActionListener
 
     Controller controller;
 
+
     public ConversationViewPanel(Controller controller_)
     {
         controller = controller_;
         buildItem();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -55,6 +54,7 @@ public class ConversationViewPanel extends JPanel implements ActionListener
             container.setConversation(updatedConversation);
         }
     }
+
 
     public void buildItem()
     {
@@ -87,6 +87,7 @@ public class ConversationViewPanel extends JPanel implements ActionListener
         add(conversationSendButton);
     }
 
+    
     public void setConversation(Conversation conversation)
     {
         // Go through each message in the conversation and generate a display text.

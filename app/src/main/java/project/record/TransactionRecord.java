@@ -12,6 +12,7 @@ public class TransactionRecord
     public long     listingID;
     public long     transactionID;
 
+
     public TransactionRecord(ResultSet resultSet)
     {
         // Pull information from the currently focused tuple.
@@ -27,6 +28,7 @@ public class TransactionRecord
         }
     }
 
+
     public TransactionRecord(Transaction transaction)
     {
         buyerNetID          = transaction.buyer.account.netID;
@@ -35,6 +37,7 @@ public class TransactionRecord
         transactionID       = transaction.getTransactionID();
     }
 
+    
     public TransactionRecord()
     {
     }

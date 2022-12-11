@@ -12,6 +12,7 @@ public class TestQueryBase
     public static final int port            = 3306; 
     public Connection dbConnection;
 
+    
     public void initializeDBState()
     {
         // Try connecting to the database. First, establish a Properties object for the connection.

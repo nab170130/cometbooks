@@ -6,6 +6,7 @@ public class CourseRecord
 	public String   prefix;
 	public String   name;
 
+    
     public CourseRecord(long courseCode_, String prefix_, String name_)
     {
         courseCode = courseCode_;

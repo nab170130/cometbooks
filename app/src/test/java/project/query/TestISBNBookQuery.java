@@ -2,13 +2,10 @@ package project.query;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Statement;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import project.record.BookRecord;
-import project.record.TransactionRecord;
 
 public class TestISBNBookQuery extends TestQueryBase
 {
@@ -17,6 +14,7 @@ public class TestISBNBookQuery extends TestQueryBase
     {
         initializeDBState();
     }
+
 
     @Test
     public void testGetQueryString()
@@ -27,6 +25,7 @@ public class TestISBNBookQuery extends TestQueryBase
         assertEquals("SELECT * FROM cometbooks.book WHERE isbn = 12345;", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

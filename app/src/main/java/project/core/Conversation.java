@@ -12,9 +12,6 @@ public class Conversation
 	public Transaction 		transaction;
 	public List<Message>	messages;
 
-	public Conversation()
-	{
-	}
 
 	public Conversation(List<MessageRecord> messageRecords, Transaction transaction_) 
 	{
@@ -29,6 +26,7 @@ public class Conversation
 		}
 	}
 	
+
 	public Conversation(Transaction transaction_)
 	{
 		this.ID 			= transaction_.transactionID;
@@ -36,6 +34,7 @@ public class Conversation
 		this.messages 		= new ArrayList<>();
 	}
 
+	
 	public void addMessage(String enteredMessage, User user) 
 	{
 		Message newMessageToAdd = new Message(enteredMessage, ID, user);

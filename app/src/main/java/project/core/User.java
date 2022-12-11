@@ -2,8 +2,6 @@ package project.core;
 
 import java.util.*;
 
-import org.w3c.dom.Text;
-
 import project.actor.NoAccountException;
 import project.actor.NoCourseException;
 import project.actor.NoScheduleException;
@@ -12,20 +10,24 @@ public class User
 {
 	public Account account;//ACCOUNT is a class
 
+
 	public User(String netID) throws NoAccountException
 	{
 		account = new Account(netID);
 	}
+
 
 	public User(String netID, String password) throws NoAccountException
 	{
 		account = new Account(netID, password);
 	}
 
+
 	public List<Transaction> getTransactions()
 	{
 		return account.getTransactionsFromAccount();
 	}
+
 
 	public List<Textbook> addBookToWishlist(Textbook selectedBook) throws NoScheduleException, NoCourseException
 	{
@@ -33,6 +35,7 @@ public class User
 		return getRecommendedTextbooks();
 	}
 
+	
 	public List<Textbook> getRecommendedTextbooks() throws NoScheduleException, NoCourseException
 	{
 		List<Textbook> recommendedTextbooks = new ArrayList<>();

@@ -17,6 +17,7 @@ public class TestMessageConversationQuery extends TestQueryBase
         initializeDBState();
     }
 
+
     @Test
     public void testGetQueryString()
     {
@@ -26,6 +27,7 @@ public class TestMessageConversationQuery extends TestQueryBase
         assertEquals("SELECT * FROM cometbooks.message WHERE transactionID = 1;", retrievedQueryString);
     }
 
+    
     @Test
     public void testDoQuery()
     {

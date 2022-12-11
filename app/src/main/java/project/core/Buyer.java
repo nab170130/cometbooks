@@ -9,6 +9,7 @@ public class Buyer extends User
 		super(buyerNetID);
 	}
 
+	
 	public Buyer(User userAsBuyer) throws NoAccountException
 	{
 		super(userAsBuyer.account.netID);

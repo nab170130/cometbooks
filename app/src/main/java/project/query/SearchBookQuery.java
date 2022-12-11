@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import project.record.BookRecord;
 
@@ -16,16 +14,19 @@ public class SearchBookQuery extends Query
     public List<BookRecord>         bookRecords;
     public HashMap<String, String>  searchParameters;
 
+
     public SearchBookQuery(Connection connection, HashMap<String, String> searchParameters_)
     {
         super(connection);
         searchParameters = searchParameters_;
     }
 
+
     public List<BookRecord> getBookRecords()
     {
         return bookRecords;
     }
+
 
     @Override
     public String getQueryString()
@@ -72,6 +73,7 @@ public class SearchBookQuery extends Query
         return queryStringBuilder.toString();
     }
 
+
     @Override
     public void processResult(ResultSet resultSet)
     {
@@ -90,6 +92,7 @@ public class SearchBookQuery extends Query
         }
     }
 
+    
     public void setBookRecords(List<BookRecord> bookRecords_)
     {
         bookRecords = bookRecords_;

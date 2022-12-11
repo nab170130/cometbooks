@@ -21,6 +21,7 @@ public class Controller
 	public BufferedReader notificationReceptor;
 	public BufferedWriter notificationTransmitter;
 
+
 	public Controller()
 	{
 	}
@@ -55,6 +56,7 @@ public class Controller
 		return selectedTextbook.getMatchingListings();
 	}
 	
+
 	public List<Textbook> performSearch(HashMap<String, String> searchParameters)
 	{
 		return BookDBAdapter.getInstance().getMatchingBooks(searchParameters);
@@ -81,6 +83,7 @@ public class Controller
 		return user.getTransactions();
 	}
 	
+
 	public List<Textbook> navigateToBuyWindow()
 	{
 		try
@@ -94,6 +97,7 @@ public class Controller
 		}
 	}
 	
+
 	public Conversation checkoutListing(SalesListing selectedListing)
 	{
 		selectedListing.placeOnHold();
@@ -111,6 +115,7 @@ public class Controller
 		return focusedConversation;
 	}
 	
+
 	public List<Textbook> addBookToWishlist(Textbook selectedBook)
 	{
 		try
@@ -123,6 +128,7 @@ public class Controller
 		}
 	}
 	
+
 	public void completeTransaction(Transaction buyerSellerTransaction)
 	{
 		if(user.account.netID.equals(buyerSellerTransaction.buyer.account.netID))
@@ -135,6 +141,7 @@ public class Controller
 		}
 	}
 	
+
 	public Conversation sendMessage(String enteredMessage)
 	{
 		// Add the message to the DB. Alert the notification server about the netID that should update their conversations.
@@ -166,6 +173,7 @@ public class Controller
 		return focusedConversation;
 	}
 
+	
 	public Conversation setFocusedConversation(Conversation focusedConversation_)
 	{
 		Conversation upToDateConversation 	= focusedConversation_.transaction.getConversation();

@@ -44,11 +44,13 @@ public class TransactionViewPanel extends JPanel implements ActionListener
 
     Controller controller;
 
+
     public TransactionViewPanel(Controller controller_)
     {
         controller = controller_;
         buildItem();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -61,6 +63,7 @@ public class TransactionViewPanel extends JPanel implements ActionListener
             setTransaction(transactionToComplete);
         }
     }
+
 
     public void buildItem()
     {
@@ -128,6 +131,7 @@ public class TransactionViewPanel extends JPanel implements ActionListener
         add(completeTransactionButton);
     }
 
+    
     public void setTransaction(Transaction transaction)
     {
         bookTitle.setText("Title: " + transaction.listing.textbook.title);

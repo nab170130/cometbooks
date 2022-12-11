@@ -2,10 +2,8 @@ package project.gui.conversationwindow;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,21 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import project.core.Account;
-import project.core.Buyer;
 import project.core.Controller;
 import project.core.Conversation;
-import project.core.Message;
-import project.core.SalesListing;
-import project.core.Seller;
-import project.core.Textbook;
-import project.core.Transaction;
 
 public class ConversationListPanel extends JPanel implements ListCellRenderer<ConversationContainer>, ListSelectionListener
 {
@@ -40,12 +30,14 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
 
     Controller controller;
 
+
     public ConversationListPanel(ConversationViewPanel panel, Controller controller_)
     {
         conversationViewPanel   = panel;
         controller              = controller_;
         buildItem();
     }
+
 
     public void buildItem()
     {
@@ -68,6 +60,7 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
         add(conversationContainerPane);
     }
 
+
     @Override
     public Component getListCellRendererComponent(JList<? extends ConversationContainer> list, ConversationContainer value, int index, boolean isSelected, boolean cellHasFocus)
     {
@@ -84,6 +77,7 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
 
         return renderItem;
     }
+
 
     public void setDisplayConversations(List<Conversation> conversations, Conversation toFocusConversation)
     {
@@ -112,6 +106,7 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
         }
     }
 
+    
     @Override
     public void valueChanged(ListSelectionEvent ev)
     {

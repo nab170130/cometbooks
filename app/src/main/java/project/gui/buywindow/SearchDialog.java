@@ -37,12 +37,14 @@ public class SearchDialog extends JDialog implements ActionListener
 
     Controller controller;
 
+    
     public SearchDialog(Controller controller_, BookListPanel parentPanel_)
     {
         controller  = controller_;
         parentPanel = parentPanel_;
         buildItem();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent ev)
@@ -90,6 +92,7 @@ public class SearchDialog extends JDialog implements ActionListener
             setVisible(false);
         }
     }
+
 
     public void buildItem()
     {

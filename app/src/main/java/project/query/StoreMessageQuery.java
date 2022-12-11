@@ -9,11 +9,13 @@ public class StoreMessageQuery extends Query
 {
     public MessageRecord messageRecordToStore;
 
+
     public StoreMessageQuery(Connection connection, MessageRecord messageRecord)
     {
         super(connection);
         messageRecordToStore = messageRecord;
     }
+
 
     @Override
     public String getQueryString()
@@ -33,6 +35,7 @@ public class StoreMessageQuery extends Query
         return queryStringBuilder.toString();
     }
 
+    
     @Override
     public void processResult(ResultSet resultSet)
     {

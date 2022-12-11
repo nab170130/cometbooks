@@ -17,10 +17,12 @@ public class BuyWindowContainer extends JPanel
     public BookListPanel       bookPanel;
     public ListingListPanel    listingPanel;
 
+
     public BuyWindowContainer(Controller sysController, CometBooksGUI parentContainer)
     {
         buildItem(sysController, parentContainer);
     }
+
 
     public void buildItem(Controller sysController, CometBooksGUI parentContainer)
     {
@@ -33,6 +35,7 @@ public class BuyWindowContainer extends JPanel
         add(listingPanel);
     }
 
+    
     public void setBooks(List<Textbook> textbooks)
     {
         bookPanel.setDisplayTextbooks(textbooks);

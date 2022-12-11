@@ -24,6 +24,7 @@ public class UTDGalaxy
         return returnRecord;
     }
 
+    
     public static AccountRecord getPublicAccountInfo(String netID) throws NoAccountException
     {
         AccountRecord returnRecord = null;

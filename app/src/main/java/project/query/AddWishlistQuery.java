@@ -9,11 +9,13 @@ public class AddWishlistQuery extends Query
 {
     WishlistRecord wishlistRecordToAdd;
 
+
     public AddWishlistQuery(Connection dbConnection, WishlistRecord wishlistRecord)
     {
         super(dbConnection);
         wishlistRecordToAdd = wishlistRecord;
     }    
+
 
     @Override
     public String getQueryString()
@@ -29,6 +31,7 @@ public class AddWishlistQuery extends Query
         return queryStringBuilder.toString();
     }
 
+    
     @Override
     public void processResult(ResultSet resultset)
     {

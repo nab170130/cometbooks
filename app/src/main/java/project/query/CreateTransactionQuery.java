@@ -11,11 +11,13 @@ public class CreateTransactionQuery extends Query
     public TransactionRecord transactionRecordToStore;
     public long newTransactionID;
 
+
     public CreateTransactionQuery(Connection connection, TransactionRecord transactionRecord)
     {
         super(connection);
         transactionRecordToStore = transactionRecord;
     }
+
 
     @Override
     public String getQueryString()
@@ -35,6 +37,7 @@ public class CreateTransactionQuery extends Query
         return queryStringBuilder.toString();
     }
 
+    
     @Override
     public void processResult(ResultSet resultSet)
     {

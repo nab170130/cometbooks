@@ -17,6 +17,7 @@ public class TestUpdateListingHoldStatusQuery extends TestQueryBase
         initializeDBState();
     }
 
+    
     @Test
     public void testGetQueryString()
     {
@@ -25,6 +26,7 @@ public class TestUpdateListingHoldStatusQuery extends TestQueryBase
 
         assertEquals("UPDATE cometbooks.listing SET onHold = 1 WHERE listingID = 1;", retrievedQueryString);
     }
+
 
     @Test
     public void testDoQuery()

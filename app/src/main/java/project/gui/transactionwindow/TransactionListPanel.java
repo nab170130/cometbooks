@@ -17,12 +17,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import project.core.Account;
-import project.core.Buyer;
 import project.core.Controller;
-import project.core.SalesListing;
-import project.core.Seller;
-import project.core.Textbook;
 import project.core.Transaction;
 
 public class TransactionListPanel extends JPanel implements ListCellRenderer<TransactionContainer>, ListSelectionListener
@@ -34,12 +29,14 @@ public class TransactionListPanel extends JPanel implements ListCellRenderer<Tra
 
     Controller controller;
 
+
     public TransactionListPanel(TransactionViewPanel panel, Controller controller_)
     {
         transactionViewPanel    = panel;
         controller              = controller_;
         buildItem();
     }
+
 
     public void buildItem()
     {
@@ -62,6 +59,7 @@ public class TransactionListPanel extends JPanel implements ListCellRenderer<Tra
         add(transactionContainerPane);
     }
 
+
     @Override
     public Component getListCellRendererComponent(JList<? extends TransactionContainer> list, TransactionContainer value, int index, boolean isSelected, boolean cellHasFocus)
     {
@@ -79,6 +77,7 @@ public class TransactionListPanel extends JPanel implements ListCellRenderer<Tra
         return renderItem;
     }
 
+
     public void setDisplayTransactions(List<Transaction> transactions)
     {
         Vector<TransactionContainer> transactionContainers = new Vector<>();
@@ -92,6 +91,7 @@ public class TransactionListPanel extends JPanel implements ListCellRenderer<Tra
         transactionList.setListData(transactionContainers);
     }
 
+    
     @Override
     public void valueChanged(ListSelectionEvent ev)
     {

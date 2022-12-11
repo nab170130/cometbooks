@@ -9,6 +9,7 @@ public class AccountRecord
 	public String password;
 	public int currentAcademicYear;
 
+    
     public AccountRecord(String name_, String displayName_, String netID_, long utdID_, String password_, int currentAcademicYear_)
     {
         name = name_;

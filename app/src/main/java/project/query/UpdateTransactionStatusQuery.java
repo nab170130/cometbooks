@@ -8,12 +8,14 @@ public class UpdateTransactionStatusQuery extends Query
     public boolean  buyerComplete;
     public long     transactionID;
 
+
     public UpdateTransactionStatusQuery(Connection connection, boolean buyerComplete_, long transactionID_)
     {
         super(connection);
         buyerComplete = buyerComplete_;
         transactionID = transactionID_;
     }
+
 
     @Override
     public String getQueryString()
@@ -34,6 +36,7 @@ public class UpdateTransactionStatusQuery extends Query
         return queryStringBuilder.toString();
     }
 
+    
     @Override
     public void processResult(ResultSet resultSet)
     {
