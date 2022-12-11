@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import project.adapter.BookDBAdapter;
-import project.server.NotificationServer;
 
 public class Controller 
 {
@@ -21,6 +20,8 @@ public class Controller
 	public BufferedReader notificationReceptor;
 	public BufferedWriter notificationTransmitter;
 
+
+	private static final int SERVER_PORT = 54321;
 
 	public Controller()
 	{
@@ -33,7 +34,7 @@ public class Controller
 		{
 			// Attempt to establish a user. Additionally, try to connect to the notification server. Send the user's netID.
 			user = new User(netID, password);
-			notificationSocket = new Socket("localhost", NotificationServer.SERVER_PORT);
+			notificationSocket = new Socket("localhost", SERVER_PORT);
 
 			notificationReceptor 	= new BufferedReader(new InputStreamReader(notificationSocket.getInputStream()));
 			notificationTransmitter = new BufferedWriter(new OutputStreamWriter(notificationSocket.getOutputStream()));

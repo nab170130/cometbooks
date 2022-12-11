@@ -8,4 +8,5 @@
  */
 
 rootProject.name = 'SE6239Project'
-includeBuild('app')
+include('app')
+include('server')
