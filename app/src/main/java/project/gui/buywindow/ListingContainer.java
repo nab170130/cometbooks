@@ -68,7 +68,7 @@ public class ListingContainer extends JPanel
 
         sellerField.setText(salesListing.seller.account.displayName);
         conditionField.setText("Condition: " + salesListing.condition);
-        priceField.setText("Price: " + salesListing.listingPrice);             // ALSO ADD GET SUGGESTED PRICE HERE!
+        priceField.setText("Price: " + String.format("$%.2f", salesListing.listingPrice) + " (Suggested: " + String.format("$%.2f", salesListing.textbook.suggestedPrice) + ")");
         holdStatusField.setText(salesListing.onHold ? "HOLD STATUS: ON HOLD" : "HOLD STATUS: AVAILABLE");
         descriptionField.setText("Description: " + salesListing.description);
     }

@@ -20,7 +20,7 @@ public class UTDCoursebook
             CourseRecord firstCourseRecord  = new CourseRecord(10000, "SE 6329", "OOSE");
             Course firstCourse              = new Course(firstCourseRecord);
 
-            CourseRecord secondCourseRecord = new CourseRecord(20000, "CS 1336", "Introduction to C++");
+            CourseRecord secondCourseRecord = new CourseRecord(20000, "CS 1336", "Underwater Basketweaving");
             Course secondCourse             = new Course(secondCourseRecord);
 
             userSchedule.courses.add(firstCourse);
@@ -48,11 +48,11 @@ public class UTDCoursebook
     {
         if(course.courseCode == 10000)
         {
-            return new long[]{12345, 12346};
+            return new long[]{262033844L, 1617296465L};
         }
         else if(course.courseCode == 20000)
         {
-            return new long[]{12347};
+            return new long[]{486806030L};
         }
         else
         {

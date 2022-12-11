@@ -65,18 +65,18 @@ public class App
             statement.executeUpdate("DELETE FROM cometbooks.book;");
 
             // Add some example books into the tables.
-            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12345, 'How to Do Well in OOSE', 'Rym Zalila-Wenkstern', 1, 2021)");
-            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12346, 'How to Not Do Unwell in OOSE', 'Rym Zalila-Wenkstern', 2, 2022)");
-            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12347, 'What Even Is C++? No, Seriously, What Is It?', 'Nathan Beck', 3, 2022)");
-            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12348, 'The Art of Computer Programming', 'Donald Knuth', 1, 1968)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (0262033844, 'Introduction to Algorithms', 'Thomas Cormen;Charles Leiserson;Ronald Rivest;Clifford Stein', 3, 2009)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (1617296465, 'Parallel and High Performance Computing', 'Robert Robey;Yuliana Zamora', 1, 2021)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (0486806030, 'The Mad Weave Book: An Ancient Form of Triaxial Basket Weaving', 'Shereen LaPlantz', 1, 2016)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (0201896834, 'The Art of Computer Programming, Vol. 1: Fundamental Algorithms', 'Donald Knuth', 3, 1997)");
             
-            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (1, 12345, 'Like New', 12.50, 'Only a smudge on the cover', 1, 'abc123456')");
-            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (2, 12345, 'Poor', 1.50, 'Please just take this off me', 0, 'zyx654321')");
-            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (3, 12346, 'New', 21.50, 'Still in its plastic wrap', 0, 'zyx654321')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (1, 0262033844, 'Like New', 12.50, 'Only a smudge on the cover', 1, 'abc123456')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (2, 0262033844, 'Poor', 1.50, 'Please just take this off me', 0, 'zyx654321')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (3, 1617296465, 'New', 21.50, 'Still in its plastic wrap', 0, 'zyx654321')");
 
             statement.executeUpdate("INSERT INTO cometbooks.transaction VALUES (1, 1, '', 'zyx654321')");
 
-            statement.executeUpdate("INSERT INTO cometbooks.wishlist VALUES ('abc123456', 12347)");
+            statement.executeUpdate("INSERT INTO cometbooks.wishlist VALUES ('abc123456', 0486806030)");
         }
         catch(SQLException ex)
         {

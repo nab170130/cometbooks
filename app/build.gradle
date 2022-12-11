@@ -25,6 +25,8 @@ dependencies {
 
     // This dependency allows us to connect to MYSQL DB
     implementation 'mysql:mysql-connector-java:8.0.15'
+
+    implementation 'com.google.code.gson:gson:2.10'
 }
 
 application {
