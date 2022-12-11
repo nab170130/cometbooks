@@ -45,6 +45,8 @@ public class LoginWindowContainer extends JPanel implements ActionListener
             // IF SUCCESSFUL, SWITCH TO BUY WINDOW.
             if(controller.login(netID, password))
             {
+                // ALSO, START THE LISTENING THREAD IN COMETBOOKSGUI CONV WINDOW.
+                cometBooksGUI.conversationWindowContainer.startListeningThread();
                 cometBooksGUI.switchToBuyWindow();
             }
             else // OTHERWISE, DISPLAY FAIL DIALOG.

@@ -26,10 +26,10 @@ public class CometBooksGUI extends JFrame implements ActionListener
     private JMenuItem   transactionWindowOption;
 
     // GUI elements for each window
-    BuyWindowContainer          buyWindowContainer;
-    ConversationWindowContainer conversationWindowContainer;
-    LoginWindowContainer        loginWindowContainer;
-    TransactionWindowContainer  transactionWindowContainer;
+    public BuyWindowContainer          buyWindowContainer;
+    public ConversationWindowContainer conversationWindowContainer;
+    public LoginWindowContainer        loginWindowContainer;
+    public TransactionWindowContainer  transactionWindowContainer;
 
     Controller controller;
 
