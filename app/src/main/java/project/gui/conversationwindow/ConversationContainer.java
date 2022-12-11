@@ -59,7 +59,7 @@ public class ConversationContainer extends JPanel
         conversation = conversation_;
 
         bookField.setText(conversation.transaction.listing.textbook.title);
-        sellerField.setText(conversation.transaction.listing.seller.account.displayName);
+        sellerField.setText("Seller: " + conversation.transaction.listing.seller.account.displayName);
         
         if(conversation.messages.size() > 0)
         {

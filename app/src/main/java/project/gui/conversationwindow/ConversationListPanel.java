@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,6 +23,7 @@ import javax.swing.event.ListSelectionListener;
 
 import project.core.Account;
 import project.core.Buyer;
+import project.core.Controller;
 import project.core.Conversation;
 import project.core.Message;
 import project.core.SalesListing;
@@ -30,67 +33,18 @@ import project.core.Transaction;
 
 public class ConversationListPanel extends JPanel implements ListCellRenderer<ConversationContainer>, ListSelectionListener
 {
-    JScrollPane                     conversationContainerPane;
-    JList<ConversationContainer>    conversationList;
-    JLabel                          paneTitle;
-    ConversationViewPanel           conversationViewPanel;
+    public JScrollPane                     conversationContainerPane;
+    public JList<ConversationContainer>    conversationList;
+    public JLabel                          paneTitle;
+    public ConversationViewPanel           conversationViewPanel;
 
-    public ConversationListPanel(ConversationViewPanel panel)
+    Controller controller;
+
+    public ConversationListPanel(ConversationViewPanel panel, Controller controller_)
     {
-        conversationViewPanel = panel;
+        conversationViewPanel   = panel;
+        controller              = controller_;
         buildItem();
-
-        Textbook testBook = new Textbook();
-        testBook.authors = new String[2];
-        testBook.authors[0] = "Nathan Beck";
-        testBook.authors[1] = "Connor Beck";
-        testBook.isbn = 12345;
-        testBook.edition = 1;
-        testBook.title = "Get me an A";
-        testBook.year = 1999;
-
-        Account account = new Account("nab170130");
-        account.currentAcademicYear = 6;
-        account.displayName = "Nathan Beck";
-        account.name = "Nathan Beck";
-        account.netID = "nab170130";
-        account.utdID = 1234567890;
-
-        Seller seller = new Seller("nab170130");
-        seller.account = account;
-
-        SalesListing testListing = new SalesListing();
-        testListing.condition = "Like new";
-        testListing.description = "Only a smudge on the cover is all";
-        testListing.listingPrice = 12.00;
-        testListing.onHold = true;
-        testListing.seller = seller;
-        testListing.textbook = testBook;
-        
-        account = new Account("nab170131");
-        account.currentAcademicYear = 6;
-        account.displayName = "Nathan Beck 2";
-        account.name = "Nathan Beck 2";
-        account.netID = "nab170131";
-        account.utdID = 1234567898;
-
-        Buyer buyer = new Buyer("nab170131");
-        buyer.account = account;
-
-        Transaction testTransaction = new Transaction(buyer, testListing);
-        testTransaction.buyer = buyer;
-        testTransaction.listing = testListing;
-        Conversation conversation = new Conversation();
-        conversation.transaction = testTransaction;
-        conversation.messages = new ArrayList<>();
-        Message message = new Message();
-        message.messageContent = "Hello there";
-        message.author = buyer;
-        conversation.messages.add(message);
-
-        ConversationContainer container = new ConversationContainer(conversation);
-
-        conversationList.setListData(new ConversationContainer[]{container});
     }
 
     public void buildItem()
@@ -131,15 +85,45 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
         return renderItem;
     }
 
+    public void setDisplayConversations(List<Conversation> conversations, Conversation toFocusConversation)
+    {
+        Vector<ConversationContainer> conversationContainers = new Vector<>();
+
+        for(Conversation conversation : conversations)
+        {
+            ConversationContainer displayContainer = new ConversationContainer(conversation);
+            conversationContainers.add(displayContainer);
+        }
+
+        conversationList.setListData(conversationContainers);
+
+        if(toFocusConversation != null)
+        {
+            for(int i = 0; i < conversationContainers.size(); i++)
+            {
+                Conversation conversation = conversationContainers.get(i).conversation;
+
+                if(conversation.ID == toFocusConversation.ID)
+                {
+                    conversationList.setSelectedIndex(i);
+                    return;
+                }
+            }
+        }
+    }
+
     @Override
     public void valueChanged(ListSelectionEvent ev)
     {
         if(ev.getSource().equals(conversationList))
         {
+            if(conversationList.getSelectedValue() == null)
+            {
+                return;
+            }
+
             Conversation toFocusConversation = conversationList.getSelectedValue().conversation;
             conversationViewPanel.setConversation(toFocusConversation);
-            invalidate();
-            repaint();
         }
     }
 }

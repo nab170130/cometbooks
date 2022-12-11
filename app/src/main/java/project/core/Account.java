@@ -3,6 +3,9 @@ package project.core;
 
 import java.util.*;
 
+import project.actor.NoAccountException;
+import project.actor.NoCourseException;
+import project.actor.NoScheduleException;
 import project.actor.UTDGalaxy;
 import project.adapter.TransactionDBAdapter;
 import project.adapter.WishlistDBAdapter;
@@ -17,10 +20,19 @@ public class Account
 	private String password;
 	public int currentAcademicYear;
 	//Started Making chnages	
-	public Account(String netID) 
+
+	public Account(String netID) throws NoAccountException
 	{
 		this.netID = netID;
 		AccountRecord record = UTDGalaxy.getPublicAccountInfo(netID);
+		setAccountInfo(record);
+	}
+
+	public Account(String netID, String password) throws NoAccountException
+	{
+		this.netID 				= netID;
+		this.password 			= password;
+		AccountRecord record 	= UTDGalaxy.login(netID, password);
 		setAccountInfo(record);
 	}
 	
@@ -39,7 +51,7 @@ public class Account
 		this.currentAcademicYear 	= publicInfoAccountRecord.currentAcademicYear;
 	}
 	
-	public Schedule getUserSchedule() 
+	public Schedule getUserSchedule() throws NoScheduleException, NoCourseException
 	{
 		return new Schedule(this.netID, this.password); // in this returning object we will be having list as  data-memeber for Schedule class, 
 											//which(Data-member in Schedule class) Dhruvi already added in her Git-Branch

@@ -2,16 +2,18 @@ package project.gui.buywindow;
 
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.List;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import project.core.Controller;
+import project.core.Textbook;
 
 public class SearchDialog extends JDialog implements ActionListener
 {
@@ -31,8 +33,14 @@ public class SearchDialog extends JDialog implements ActionListener
 
     JButton confirmButton;
 
-    public SearchDialog()
+    BookListPanel parentPanel;
+
+    Controller controller;
+
+    public SearchDialog(Controller controller_, BookListPanel parentPanel_)
     {
+        controller  = controller_;
+        parentPanel = parentPanel_;
         buildItem();
     }
 
@@ -76,7 +84,8 @@ public class SearchDialog extends JDialog implements ActionListener
             }
 
             // TODO: PUT CONTROLLER CALL TO performSearch!
-            System.out.println(searchParameters);
+            List<Textbook> matchingTextbooks = controller.performSearch(searchParameters);
+            parentPanel.setDisplayTextbooks(matchingTextbooks);
 
             setVisible(false);
         }

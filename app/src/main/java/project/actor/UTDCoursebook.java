@@ -8,12 +8,13 @@ import project.record.CourseRecord;
 
 public class UTDCoursebook 
 {
-    public static Schedule getUserSchedule(String netID, String password)
+    public static Schedule getUserSchedule(String netID, String password) throws NoScheduleException, NoCourseException
     {
-        Schedule userSchedule = new Schedule();
+        Schedule userSchedule = null;
 
-        if(netID == "abc123456" && password == "pass1234")
+        if(netID.equals("abc123456") && password.equals("pass1234"))
         {
+            userSchedule = new Schedule();
             userSchedule.semester = "Fall 2022";
 
             CourseRecord firstCourseRecord  = new CourseRecord(10000, "SE 6329", "OOSE");
@@ -25,8 +26,9 @@ public class UTDCoursebook
             userSchedule.courses.add(firstCourse);
             userSchedule.courses.add(secondCourse);
         }
-        else if(netID == "zyx654321" && password == "pass4321")
+        else if(netID.equals("zyx654321") && password.equals("pass4321"))
         {
+            userSchedule = new Schedule();
             userSchedule.semester = "Spring 2022";
 
             CourseRecord firstCourseRecord  = new CourseRecord(10000, "SE 6329", "OOSE");
@@ -34,11 +36,15 @@ public class UTDCoursebook
 
             userSchedule.courses.add(firstCourse);
         }
+        else
+        {
+            throw new NoScheduleException();
+        }
 
         return userSchedule;
     }    
 
-    public static long[] getTextbooks(Course course)
+    public static long[] getTextbooks(Course course) throws NoCourseException
     {
         if(course.courseCode == 10000)
         {
@@ -50,7 +56,7 @@ public class UTDCoursebook
         }
         else
         {
-            return null;
+            throw new NoCourseException();
         }
     }
 }

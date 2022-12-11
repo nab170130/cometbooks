@@ -21,7 +21,15 @@ public class SalesListing
 	public SalesListing(ListingRecord listingRecord, Textbook selectedTextbook) 
 	{
 		this.setTextbook(selectedTextbook);
-		this.seller = new Seller(listingRecord.sellerNetID);
+		
+		try
+		{
+			this.seller = new Seller(listingRecord.sellerNetID);
+		}
+		catch(Exception ex)
+		{
+		}
+
 		this.listingID = listingRecord.listingID;
 		this.condition = listingRecord.condition;
 		this.listingPrice = listingRecord.listingPrice;

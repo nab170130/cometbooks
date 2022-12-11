@@ -1,7 +1,9 @@
 package project.gui.conversationwindow;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -14,22 +16,28 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import project.core.Controller;
 import project.core.Conversation;
 import project.core.Message;
 
 public class ConversationViewPanel extends JPanel implements ActionListener
 {
-    JTextArea       conversationViewArea;
-    JScrollPane     conversationViewPane;
+    public JTextArea       conversationViewArea;
+    public JScrollPane     conversationViewPane;
 
-    JTextArea       conversationEditArea;
-    JScrollPane     conversationEditPane;
-    JButton         conversationSendButton;
+    public JTextArea       conversationEditArea;
+    public JScrollPane     conversationEditPane;
+    public JButton         conversationSendButton;
 
-    JLabel          paneTitle;
+    public JLabel          paneTitle;
 
-    public ConversationViewPanel()
+    public ConversationListPanel listPanel;
+
+    Controller controller;
+
+    public ConversationViewPanel(Controller controller_)
     {
+        controller = controller_;
         buildItem();
     }
 
@@ -40,7 +48,11 @@ public class ConversationViewPanel extends JPanel implements ActionListener
         {
             // DO SEND MESSAGE CASE
             String messageToSend = conversationEditArea.getText();
-            System.out.println(messageToSend);
+            
+            Conversation updatedConversation = controller.sendMessage(messageToSend);
+            setConversation(updatedConversation);
+            ConversationContainer container = listPanel.conversationList.getSelectedValue();
+            container.setConversation(updatedConversation);
         }
     }
 

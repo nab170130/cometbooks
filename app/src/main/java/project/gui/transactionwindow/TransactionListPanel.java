@@ -3,6 +3,8 @@ package project.gui.transactionwindow;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 
 import project.core.Account;
 import project.core.Buyer;
+import project.core.Controller;
 import project.core.SalesListing;
 import project.core.Seller;
 import project.core.Textbook;
@@ -24,60 +27,18 @@ import project.core.Transaction;
 
 public class TransactionListPanel extends JPanel implements ListCellRenderer<TransactionContainer>, ListSelectionListener
 {
-    JScrollPane                 transactionContainerPane;
-    JList<TransactionContainer> transactionList;
-    JLabel                      paneTitle;
-    TransactionViewPanel        transactionViewPanel;
+    public JScrollPane                 transactionContainerPane;
+    public JList<TransactionContainer> transactionList;
+    public JLabel                      paneTitle;
+    public TransactionViewPanel        transactionViewPanel;
 
-    public TransactionListPanel(TransactionViewPanel panel)
+    Controller controller;
+
+    public TransactionListPanel(TransactionViewPanel panel, Controller controller_)
     {
-        transactionViewPanel = panel;
+        transactionViewPanel    = panel;
+        controller              = controller_;
         buildItem();
-
-        Textbook testBook = new Textbook();
-        testBook.authors = new String[2];
-        testBook.authors[0] = "Nathan Beck";
-        testBook.authors[1] = "Connor Beck";
-        testBook.isbn = 12345;
-        testBook.edition = 1;
-        testBook.title = "Get me an A";
-        testBook.year = 1999;
-
-        Account account = new Account("nab170130");
-        account.currentAcademicYear = 6;
-        account.displayName = "Nathan Beck";
-        account.name = "Nathan Beck";
-        account.netID = "nab170130";
-        account.utdID = 1234567890;
-
-        Seller seller = new Seller("nab170130");
-        seller.account = account;
-
-        SalesListing testListing = new SalesListing();
-        testListing.condition = "Like new";
-        testListing.description = "Only a smudge on the cover is all";
-        testListing.listingPrice = 12.00;
-        testListing.onHold = true;
-        testListing.seller = seller;
-        testListing.textbook = testBook;
-        
-        account = new Account("nab170131");
-        account.currentAcademicYear = 6;
-        account.displayName = "Nathan Beck 2";
-        account.name = "Nathan Beck 2";
-        account.netID = "nab170131";
-        account.utdID = 1234567898;
-
-        Buyer buyer = new Buyer("nab170131");
-        buyer.account = account;
-
-        Transaction testTransaction = new Transaction(buyer, testListing);
-        testTransaction.buyer = buyer;
-        testTransaction.listing = testListing;
-
-        TransactionContainer container = new TransactionContainer(testTransaction);
-
-        transactionList.setListData(new TransactionContainer[]{container});
     }
 
     public void buildItem()
@@ -118,11 +79,29 @@ public class TransactionListPanel extends JPanel implements ListCellRenderer<Tra
         return renderItem;
     }
 
+    public void setDisplayTransactions(List<Transaction> transactions)
+    {
+        Vector<TransactionContainer> transactionContainers = new Vector<>();
+
+        for(Transaction transaction : transactions)
+        {
+            TransactionContainer displayContainer = new TransactionContainer(transaction);
+            transactionContainers.add(displayContainer);
+        }
+
+        transactionList.setListData(transactionContainers);
+    }
+
     @Override
     public void valueChanged(ListSelectionEvent ev)
     {
         if(ev.getSource().equals(transactionList))
         {
+            if(transactionList.getSelectedValue() == null)
+            {
+                return;
+            }
+
             Transaction toFocusTransaction = transactionList.getSelectedValue().transaction;
             transactionViewPanel.setTransaction(toFocusTransaction);
             invalidate();

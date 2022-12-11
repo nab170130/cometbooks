@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -16,60 +18,47 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import org.w3c.dom.Text;
+
+import project.core.Controller;
+import project.core.SalesListing;
 import project.core.Textbook;
 
-public class BookListPanel extends JPanel implements ListCellRenderer<BookContainer>, ActionListener
+public class BookListPanel extends JPanel implements ListCellRenderer<BookContainer>, ActionListener, ListSelectionListener
 {
-    JScrollPane             bookContainerPane;
-    JList<BookContainer>    bookList;
-    JLabel                  paneTitle;
-    JButton                 searchButton;
-    JButton                 addWishlistButton;
+    public JScrollPane             bookContainerPane;
+    public JList<BookContainer>    bookList;
+    public JLabel                  paneTitle;
+    public JButton                 searchButton;
+    public JButton                 addWishlistButton;
 
-    public BookListPanel()
+    public ListingListPanel        listingPanel;
+
+    Controller controller;
+
+    public BookListPanel(Controller sysController, ListingListPanel listingPanel_)
     {
+        controller      = sysController;
+        listingPanel    = listingPanel_;
         buildItem();
-
-        // For testing, just add items.
-        Vector<BookContainer> allBooks = new Vector<>();
-
-        Textbook testBook = new Textbook();
-        testBook.authors = new String[2];
-        testBook.authors[0] = "Nathan Beck";
-        testBook.authors[1] = "Connor Beck";
-        testBook.isbn = 12345;
-        testBook.edition = 1;
-        testBook.title = "Get me an A";
-        testBook.year = 1999;
-        BookContainer dispBook = new BookContainer(testBook);
-        allBooks.add(dispBook);
-
-        testBook = new Textbook();
-        testBook.authors = new String[1];
-        testBook.authors[0] = "Nathan Beck";
-        testBook.isbn = 123455;
-        testBook.edition = 2;
-        testBook.title = "Get me an C";
-        testBook.year = 1998;
-        dispBook = new BookContainer(testBook);
-        allBooks.add(dispBook);
-
-        bookList.setListData(allBooks);
     }
 
     public void actionPerformed(ActionEvent ev)
     {
         if(ev.getSource().equals(searchButton))
         {
-            SearchDialog searchDialog = new SearchDialog();
+            SearchDialog searchDialog = new SearchDialog(controller, this);
         }
         else if(ev.getSource().equals(addWishlistButton))
         {
             Textbook textbook = bookList.getSelectedValue().textbook;
 
             // TODO: HAVE ADD WISHLIST BUTTON HERE!
-            System.out.println("WISHLIST ADD: " + textbook.title);
+            List<Textbook> newRecList = controller.addBookToWishlist(textbook);
+            setDisplayTextbooks(newRecList);
         }
     }
 
@@ -77,6 +66,7 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
     {
         bookList = new JList<>();
         bookList.setCellRenderer(this);
+        bookList.addListSelectionListener(this);
 
         bookContainerPane = new JScrollPane(bookList);
         bookContainerPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -115,5 +105,35 @@ public class BookListPanel extends JPanel implements ListCellRenderer<BookContai
         }
 
         return renderItem;
+    }
+
+    public void setDisplayTextbooks(List<Textbook> textbooks)
+    {
+        Vector<BookContainer> bookContainers = new Vector<>();
+
+        for(Textbook textbook : textbooks)
+        {
+            BookContainer displayContainer = new BookContainer(textbook);
+            bookContainers.add(displayContainer);
+        }
+
+        bookList.setListData(bookContainers);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent ev)
+    {
+        if(ev.getSource().equals(bookList))
+        {
+            if(bookList.getSelectedValue() == null)
+            {
+                return;
+            }
+
+            Textbook getListingsTextbook    = bookList.getSelectedValue().textbook;
+            List<SalesListing> listings     = controller.selectBook(getListingsTextbook);
+            
+            listingPanel.setDisplayListings(listings);
+        }
     }
 }

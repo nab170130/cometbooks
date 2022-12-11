@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -18,62 +19,29 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 
 import project.core.Textbook;
+import project.gui.CometBooksGUI;
 import project.core.Account;
+import project.core.Controller;
+import project.core.Conversation;
 import project.core.SalesListing;
 import project.core.Seller;
 
 public class ListingListPanel extends JPanel implements ListCellRenderer<ListingContainer>, ActionListener
 {
-    JButton                 checkoutButton;
-    JScrollPane             listingContainerPane;
-    JList<ListingContainer> listingList;
-    JLabel                  paneTitle;
+    public JButton                 checkoutButton;
+    public JScrollPane             listingContainerPane;
+    public JList<ListingContainer> listingList;
+    public JLabel                  paneTitle;
 
-    public ListingListPanel()
+    CometBooksGUI   parentContainer;
+
+    Controller      controller;
+
+    public ListingListPanel(Controller sysController, CometBooksGUI parentContainer_)
     {
+        controller      = sysController;
+        parentContainer = parentContainer_;
         buildItem();
-
-        // For testing, just add items.
-        Vector<ListingContainer> allListings = new Vector<>();
-
-        Textbook testBook = new Textbook();
-        testBook.authors = new String[2];
-        testBook.authors[0] = "Nathan Beck";
-        testBook.authors[1] = "Connor Beck";
-        testBook.isbn = 12345;
-        testBook.edition = 1;
-        testBook.title = "Get me an A";
-        testBook.year = 1999;
-
-        Account account = new Account("nab170130");
-        account.currentAcademicYear = 6;
-        account.displayName = "Nathan Beck";
-        account.name = "Nathan Beck";
-        account.netID = "nab170130";
-        account.utdID = 1234567890;
-
-        Seller seller = new Seller("nab170130");
-        seller.account = account;
-
-        SalesListing testListing = new SalesListing();
-        testListing.condition = "Like new";
-        testListing.description = "Only a smudge on the cover is all";
-        testListing.listingPrice = 12.00;
-        testListing.onHold = true;
-        testListing.seller = seller;
-        ListingContainer dispListing = new ListingContainer(testListing);
-        allListings.add(dispListing);
-
-        testListing = new SalesListing();
-        testListing.condition = "Old";
-        testListing.description = "Spilled coffee all over it";
-        testListing.listingPrice = 1.00;
-        testListing.onHold = false;
-        testListing.seller = seller;
-        dispListing = new ListingContainer(testListing);
-        allListings.add(dispListing);
-
-        listingList.setListData(allListings);
     }
 
     @Override
@@ -81,10 +49,18 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
     {
         if(ev.getSource().equals(checkoutButton))
         {
-            // ADD CHECKOUT CONTROLLER CALL!
+            // Create a transaction, swap to conversation window with conversation as focus.
             SalesListing listing = listingList.getSelectedValue().salesListing;
 
-            System.out.println(listing.description);
+            if(listing.onHold)
+            {
+                OnHoldFailDialog failDialog = new OnHoldFailDialog();
+            }
+            else
+            {
+                Conversation conversation = controller.checkoutListing(listing);
+                parentContainer.switchToConversationsWindow(conversation);
+            }
         }
     }
 
@@ -126,5 +102,18 @@ public class ListingListPanel extends JPanel implements ListCellRenderer<Listing
         }
 
         return renderItem;
+    }
+
+    public void setDisplayListings(List<SalesListing> listings)
+    {
+        Vector<ListingContainer> listingContainers = new Vector<>();
+
+        for(SalesListing listing : listings)
+        {
+            ListingContainer displayContainer = new ListingContainer(listing);
+            listingContainers.add(displayContainer);
+        }
+
+        listingList.setListData(listingContainers);
     }
 }

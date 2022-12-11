@@ -3,10 +3,12 @@ package project.core;
 import project.record.BookRecord;
 import java.util.List;
 
+import javax.lang.model.util.ElementScanner14;
+
 import project.actor.ThirdPartyVendor;
 import project.adapter.ListingDBAdapter;
 
-public class Textbook 
+public class Textbook implements Comparable<Textbook>
 {
 	public long isbn;
 	public int year;
@@ -17,6 +19,22 @@ public class Textbook
 	
 	public Textbook()
 	{
+	}
+
+	public int compareTo(Textbook other)
+	{
+		if(isbn < other.isbn)
+		{
+			return -1;
+		}
+		else if(isbn == other.isbn)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
 	}
 
 	public Textbook(BookRecord bookRecord)

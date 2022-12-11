@@ -28,22 +28,14 @@ public class MessageDBAdapter extends DBAdapter
         return instance;
     }
 
-    public Conversation getConversationFromTransaction(long transactionID)
+    public Conversation getConversationFromTransaction(Transaction transaction)
     {
-        MessageConversationQuery messageConversationQuery = new MessageConversationQuery(connection, transactionID);
+        MessageConversationQuery messageConversationQuery = new MessageConversationQuery(connection, transaction.transactionID);
         messageConversationQuery.doQuery();
 
         List<MessageRecord> messageRecords  = messageConversationQuery.getMessageRecords();
-        TransactionRecord transactionRecord = messageConversationQuery.getTransactionRecord();
-        ListingRecord listingRecord         = messageConversationQuery.getListingRecord();
-        BookRecord bookRecord               = messageConversationQuery.getBookRecord();
 
         // Reconstruct the transaction object by building up from its components
-        Textbook textbook       = new Textbook(bookRecord);
-        textbook.setSuggestedPrice();
-        SalesListing listing    = new SalesListing(listingRecord, textbook);
-        Transaction transaction = new Transaction(transactionRecord, listing);
-
         Conversation conversation = new Conversation(messageRecords, transaction);
 
         return conversation;

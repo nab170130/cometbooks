@@ -21,7 +21,14 @@ public class Message
 		messageContent 	= messageRecord.messageContent;
 		dateTimeSent 	= messageRecord.dateTimeSent;
 		transactionID 	= messageRecord.transactionID;
-		author 			= new User(messageRecord.authorNetID);
+
+		try
+		{
+			author = new User(messageRecord.authorNetID);
+		}
+		catch(Exception ex)
+		{
+		}
 	}
 	
 	public Message(String enteredMessage, long transactionID_, User author_) 

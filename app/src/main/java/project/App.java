@@ -3,27 +3,30 @@
  */
 package project;
 
-import java.sql.*;
-import java.util.Enumeration;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
-import com.mysql.cj.conf.DatabaseUrlContainer;
-
+import project.core.Controller;
 import project.gui.CometBooksGUI;
 
-public class App {
-
+public class App 
+{
     public static void main(String[] args) 
     {
-        new CometBooksGUI();
+        // FOR THE SAKE OF THE DEMO, INITIALIZE THE DB STATE TO SOMETHING REPRODUCIBLE.
+        initializeDBStateForDemo();
+
+        // Instantiate the controller and the GUI.
+        Controller sysController    = new Controller();
+        CometBooksGUI cometBooksGUI = new CometBooksGUI(sysController); 
     }
 
-    public static final String dbHostDomain = "localhost";
-    public static final int port            = 3306; 
-    public Connection dbConnection;
-
-    public void initializeDBState()
+    public static void initializeDBStateForDemo()
     {
+        // Contains code for initializing the database state for the demonstration. This would not be called in persistent sessions.
         // Try connecting to the database. First, establish a Properties object for the connection.
         Properties connectionProperties = new Properties();
         connectionProperties.put("user", "root");
@@ -42,48 +45,38 @@ public class App {
         String urlString = urlStringBuilder.toString();
 
         // Establish a connection to the MYSQL server
-        Connection dbConnection_ = null;
+        Connection dbConnection = null;
         try
         {
-            dbConnection_ = DriverManager.getConnection(urlString, connectionProperties);
+            dbConnection = DriverManager.getConnection(urlString, connectionProperties);
         }
         catch(SQLException ex)
         {
             ex.printStackTrace();
         }
 
-        dbConnection = dbConnection_;
-
         try(Statement statement = dbConnection.createStatement())
         {
             // Delete all tuples from all tables
-            statement.execute("DELETE FROM cometbooks.message;");
-            statement.execute("DELETE FROM cometbooks.wishlist;");
-            statement.execute("DELETE FROM cometbooks.transaction;");
-            statement.execute("DELETE FROM cometbooks.listing;");
-            statement.execute("DELETE FROM cometbooks.book;");
+            statement.executeUpdate("DELETE FROM cometbooks.message;");
+            statement.executeUpdate("DELETE FROM cometbooks.wishlist;");
+            statement.executeUpdate("DELETE FROM cometbooks.transaction;");
+            statement.executeUpdate("DELETE FROM cometbooks.listing;");
+            statement.executeUpdate("DELETE FROM cometbooks.book;");
 
-            // Add some example tuples to each table
-            statement.execute("INSERT INTO cometbooks.book VALUES (12345, 'Test Title', 'Nathan Beck', 1, 1999)");
-            statement.execute("INSERT INTO cometbooks.book VALUES (12346, 'Test Title 2', 'Dhruvi Shah', 2, 2000)");
-            statement.execute("INSERT INTO cometbooks.book VALUES (12347, 'Test Title 3', 'Tirth Mehra', 3, 2001)");
+            // Add some example books into the tables.
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12345, 'How to Do Well in OOSE', 'Rym Zalila-Wenkstern', 1, 2021)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12346, 'How to Not Do Unwell in OOSE', 'Rym Zalila-Wenkstern', 2, 2022)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12347, 'What Even Is C++? No, Seriously, What Is It?', 'Nathan Beck', 3, 2022)");
+            statement.executeUpdate("INSERT INTO cometbooks.book VALUES (12348, 'The Art of Computer Programming', 'Donald Knuth', 1, 1968)");
             
-            statement.execute("INSERT INTO cometbooks.listing VALUES (1, 12345, 'Like New', 12.50, 'Only a smudge on the cover', 0, 'abc123456')");
-            statement.execute("INSERT INTO cometbooks.listing VALUES (2, 12345, 'Poor', 1.50, 'Please just take this off me', 0, 'zyx654321')");
-            statement.execute("INSERT INTO cometbooks.listing VALUES (3, 12346, 'New', 21.50, 'Still in its plastic wrap', 0, 'abc123456')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (1, 12345, 'Like New', 12.50, 'Only a smudge on the cover', 1, 'abc123456')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (2, 12345, 'Poor', 1.50, 'Please just take this off me', 0, 'zyx654321')");
+            statement.executeUpdate("INSERT INTO cometbooks.listing VALUES (3, 12346, 'New', 21.50, 'Still in its plastic wrap', 0, 'zyx654321')");
 
-            statement.execute("INSERT INTO cometbooks.transaction VALUES (1, 1, '', 'nab170130')");
-            statement.execute("INSERT INTO cometbooks.transaction VALUES (2, 2, '', 'nab170131')");
-            statement.execute("INSERT INTO cometbooks.transaction VALUES (3, 3, '', 'nab170132')");
+            statement.executeUpdate("INSERT INTO cometbooks.transaction VALUES (1, 1, '', 'zyx654321')");
 
-            statement.execute("INSERT INTO cometbooks.wishlist VALUES ('nab170130', 12345)");
-            statement.execute("INSERT INTO cometbooks.wishlist VALUES ('nab170130', 12346)");
-            statement.execute("INSERT INTO cometbooks.wishlist VALUES ('nab170131', 12345)");
-
-            statement.execute("INSERT INTO cometbooks.message VALUES (1, 'nab170130', 1, 'Hey, I want your book.')");
-            statement.execute("INSERT INTO cometbooks.message VALUES (1, 'abc123456', 2, 'Okay, sure.')");
-            statement.execute("INSERT INTO cometbooks.message VALUES (2, 'nab170131', 1, 'Hey, can I have your book?')");
-            statement.execute("INSERT INTO cometbooks.message VALUES (2, 'nab170131', 10, 'Hello?')");
+            statement.executeUpdate("INSERT INTO cometbooks.wishlist VALUES ('abc123456', 12347)");
         }
         catch(SQLException ex)
         {

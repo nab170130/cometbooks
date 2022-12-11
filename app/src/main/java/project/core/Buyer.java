@@ -1,16 +1,17 @@
 package project.core;
 
-import java.util.*;
+import project.actor.NoAccountException;
 
 public class Buyer extends User 
 {
-	public Buyer(String buyerNetID) 
+	public Buyer(String buyerNetID) throws NoAccountException 
 	{
-		
+		super(buyerNetID);
 	}
 
-	public Buyer(User userAsBuyer)
+	public Buyer(User userAsBuyer) throws NoAccountException
 	{
+		super(userAsBuyer.account.netID);
 		this.account = userAsBuyer.account;
 	}
 }

@@ -12,33 +12,54 @@ public class Transaction
 	public Buyer 			buyer;
 	
 	
-	public Transaction(Buyer buyer, SalesListing selectedListing) 
+	public Transaction(Buyer buyer_, SalesListing selectedListing) 
 	{ 
-		transactionID = 0;
-		transactionID = TransactionDBAdapter.getInstance().storeTransaction(this);//Are we sending this object/Transaction object as an argument of this method???????????????
+		transactionID 		= 0;
+		completionStatus 	= "";
+		listing 			= selectedListing;
+		buyer 				= buyer_;
+
+		transactionID = TransactionDBAdapter.getInstance().storeTransaction(this);
 	}
 
 	public Transaction(TransactionRecord transactionRecord, SalesListing salesListing) 
-	{//TransactionRecord IS A CLASS
-		this.buyer = new Buyer(transactionRecord.buyerNetID);
+	{
+		try
+		{
+			this.buyer 				= new Buyer(transactionRecord.buyerNetID);
+			this.completionStatus 	= transactionRecord.completionStatus;
+			this.listing 			= salesListing;
+			this.transactionID 		= transactionRecord.transactionID;
+		}
+		catch(Exception ex)
+		{
+		}
 	}
 	
 	
 	public Conversation getConversation() 
-	{//Conversation is a class
-//		MessageDBAdapter md = new MessageDBAdapter(); // Class to be cretaed
-		return MessageDBAdapter.getInstance().getConversationFromTransaction(this.transactionID);
+	{
+		return MessageDBAdapter.getInstance().getConversationFromTransaction(this);
 	}
 	
 	public void markBuyerComplete() 
 	{
-		//TransactionDBAdapter td = new TransactionDBAdapter();
 		TransactionDBAdapter.getInstance().markBuyerComplete(this);
+
+		if(!completionStatus.contains("buyer"))
+		{
+			completionStatus = "buyer" + completionStatus;
+		}
 	}
+
 	public void markSellerComplete() 
 	{
-		//TransactionDBAdapter td = new TransactionDBAdapter();
 		TransactionDBAdapter.getInstance().markSellerComplete(this);
+
+		if(!completionStatus.contains("seller"))
+		{
+			completionStatus = completionStatus + "seller";
+		}
 	}
 	
 	public long getTransactionID() //Do we need chnage the data-ttype over here as we delcared ID as a string and In class-diagram we kept return data-type as long

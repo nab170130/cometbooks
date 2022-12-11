@@ -3,6 +3,7 @@ package project.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import project.actor.NoCourseException;
 import project.actor.UTDCoursebook;
 import project.adapter.BookDBAdapter;
 import project.record.CourseRecord;
@@ -14,7 +15,7 @@ public class Course
 	public String 			name;
 	public List<Textbook> 	textbooks;
 	
-	public Course(CourseRecord courseRecord) 
+	public Course(CourseRecord courseRecord) throws NoCourseException
 	{
 		copyRecordAttributes(courseRecord);
 

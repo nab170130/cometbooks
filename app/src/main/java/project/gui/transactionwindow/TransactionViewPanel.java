@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import project.core.Controller;
 import project.core.Transaction;
 
 public class TransactionViewPanel extends JPanel implements ActionListener
@@ -28,17 +29,24 @@ public class TransactionViewPanel extends JPanel implements ActionListener
     JLabel sellerSectionHeader;
     JLabel sellerName;
     JLabel sellerNetID;
+    JLabel sellerComplete;
 
     JLabel buyerSectionHeader;
     JLabel buyerName;
     JLabel buyerNetID;
+    JLabel buyerComplete;
 
     JButton completeTransactionButton;
 
     JLabel paneTitle;
 
-    public TransactionViewPanel()
+    TransactionListPanel listPanel;
+
+    Controller controller;
+
+    public TransactionViewPanel(Controller controller_)
     {
+        controller = controller_;
         buildItem();
     }
 
@@ -48,7 +56,9 @@ public class TransactionViewPanel extends JPanel implements ActionListener
         if(ev.getSource().equals(completeTransactionButton))
         {
             // DO COMPLETE TRANSACTION
-            System.out.println("COMPLETE TRANSACTION");
+            Transaction transactionToComplete = listPanel.transactionList.getSelectedValue().transaction;
+            controller.completeTransaction(transactionToComplete);
+            setTransaction(transactionToComplete);
         }
     }
 
@@ -83,12 +93,14 @@ public class TransactionViewPanel extends JPanel implements ActionListener
         sellerSectionHeader.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
         sellerName = new JLabel();
         sellerNetID = new JLabel();
+        sellerComplete = new JLabel();
 
         buyerSectionHeader = new JLabel("Buyer Details");
         buyerSectionHeader.setFont(sectionFont);
         buyerSectionHeader.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
         buyerName = new JLabel();
         buyerNetID = new JLabel();
+        buyerComplete = new JLabel();
 
         completeTransactionButton = new JButton("Complete Transaction");
         completeTransactionButton.addActionListener(this);
@@ -108,9 +120,11 @@ public class TransactionViewPanel extends JPanel implements ActionListener
         add(sellerSectionHeader);
         add(sellerName);
         add(sellerNetID);
+        add(sellerComplete);
         add(buyerSectionHeader);
         add(buyerName);
         add(buyerNetID);
+        add(buyerComplete);
         add(completeTransactionButton);
     }
 
@@ -136,8 +150,10 @@ public class TransactionViewPanel extends JPanel implements ActionListener
 
         sellerName.setText("Name: " + transaction.listing.seller.account.displayName);
         sellerNetID.setText("NetID: " + transaction.listing.seller.account.netID);
+        sellerComplete.setText(transaction.completionStatus.contains("seller") ? "Marked Complete: Yes" : "Marked Complete: No");
 
         buyerName.setText("Name: " + transaction.buyer.account.displayName);
         buyerNetID.setText("NetID: " + transaction.buyer.account.netID);
+        buyerComplete.setText(transaction.completionStatus.contains("buyer") ? "Marked Complete: Yes" : "Marked Complete: No");
     }
 }

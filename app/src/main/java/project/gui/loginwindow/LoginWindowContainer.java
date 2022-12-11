@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import project.core.Controller;
 import project.gui.CometBooksGUI;
 import project.gui.buywindow.BuyWindowContainer;
 
@@ -23,9 +24,12 @@ public class LoginWindowContainer extends JPanel implements ActionListener
 
     CometBooksGUI cometBooksGUI;
 
-    public LoginWindowContainer(CometBooksGUI cometBooksGUI_)
+    Controller controller;
+
+    public LoginWindowContainer(CometBooksGUI cometBooksGUI_, Controller controller_)
     {
-        cometBooksGUI = cometBooksGUI_;
+        cometBooksGUI   = cometBooksGUI_;
+        controller      = controller_;
         buildItem();
     }
 
@@ -39,7 +43,14 @@ public class LoginWindowContainer extends JPanel implements ActionListener
             String password = passwordField.getText();
 
             // IF SUCCESSFUL, SWITCH TO BUY WINDOW.
-            cometBooksGUI.switchToBuyWindow();
+            if(controller.login(netID, password))
+            {
+                cometBooksGUI.switchToBuyWindow();
+            }
+            else // OTHERWISE, DISPLAY FAIL DIALOG.
+            {
+                FailDialog dialog = new FailDialog();
+            }
         }
     }
 

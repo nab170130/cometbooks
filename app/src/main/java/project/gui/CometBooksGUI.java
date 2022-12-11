@@ -1,10 +1,16 @@
 package project.gui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.*;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.*;
 
+import project.core.Controller;
+import project.core.Conversation;
+import project.core.Textbook;
+import project.core.Transaction;
 import project.gui.buywindow.BuyWindowContainer;
 import project.gui.conversationwindow.ConversationWindowContainer;
 import project.gui.loginwindow.LoginWindowContainer;
@@ -25,8 +31,11 @@ public class CometBooksGUI extends JFrame implements ActionListener
     LoginWindowContainer        loginWindowContainer;
     TransactionWindowContainer  transactionWindowContainer;
 
-    public CometBooksGUI()
+    Controller controller;
+
+    public CometBooksGUI(Controller sysController)
     {
+        controller = sysController;
         buildGUI();
     }
 
@@ -39,7 +48,7 @@ public class CometBooksGUI extends JFrame implements ActionListener
         }
         else if(ev.getSource().equals(conversationWindowOption))
         {
-            switchToConversationsWindow();
+            switchToConversationsWindow(null);
         }
         else if(ev.getSource().equals(transactionWindowOption))
         {
@@ -50,10 +59,10 @@ public class CometBooksGUI extends JFrame implements ActionListener
     public void buildGUI()
     {
         menuBar                     = buildBar();
-        buyWindowContainer          = new BuyWindowContainer(); 
-        conversationWindowContainer = new ConversationWindowContainer();
-        loginWindowContainer        = new LoginWindowContainer(this);
-        transactionWindowContainer  = new TransactionWindowContainer();
+        buyWindowContainer          = new BuyWindowContainer(controller, this); 
+        conversationWindowContainer = new ConversationWindowContainer(controller);
+        loginWindowContainer        = new LoginWindowContainer(this, controller);
+        transactionWindowContainer  = new TransactionWindowContainer(controller);
 
         setTitle("CometBooks");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,15 +98,28 @@ public class CometBooksGUI extends JFrame implements ActionListener
         getContentPane().add(menuBar, BorderLayout.NORTH);
         getContentPane().add(buyWindowContainer, BorderLayout.CENTER);
 
+        buyWindowContainer.bookPanel.bookList.clearSelection();
+        buyWindowContainer.listingPanel.listingList.setListData(new Vector<>());
+
+        List<Textbook> initialRecommendations = controller.navigateToBuyWindow();
+        buyWindowContainer.setBooks(initialRecommendations);
+
         revalidate();
         repaint();
     }
 
-    public void switchToConversationsWindow()
+    public void switchToConversationsWindow(Conversation conversationFocus)
     {
         getContentPane().removeAll();
         getContentPane().add(menuBar, BorderLayout.NORTH);
         getContentPane().add(conversationWindowContainer, BorderLayout.CENTER);
+
+        conversationWindowContainer.conversationPanel.conversationList.clearSelection();
+        conversationWindowContainer.conversationViewPanel.conversationViewArea.setText("");
+
+        List<Conversation> conversations = controller.navigateToConversationWindow();
+
+        conversationWindowContainer.setConversations(conversations, conversationFocus);
 
         revalidate();
         repaint();
@@ -117,6 +139,12 @@ public class CometBooksGUI extends JFrame implements ActionListener
         getContentPane().removeAll();
         getContentPane().add(menuBar, BorderLayout.NORTH);
         getContentPane().add(transactionWindowContainer, BorderLayout.CENTER);
+
+        transactionWindowContainer.transactionPanel.transactionList.clearSelection();
+
+        List<Transaction> transactions = controller.navigateToTransactionsWindow();
+
+        transactionWindowContainer.setTransactions(transactions);
 
         revalidate();
         repaint();

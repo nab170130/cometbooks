@@ -28,10 +28,9 @@ public abstract class DBAdapter
         String urlString = urlStringBuilder.toString();
 
         // Establish a connection to the MYSQL server
-        Connection dbConnection = null;
         try
         {
-            dbConnection = DriverManager.getConnection(urlString, connectionProperties);
+            connection = DriverManager.getConnection(urlString, connectionProperties);
             System.out.println("Connection successfully established.");
         }
         catch(SQLException ex)
