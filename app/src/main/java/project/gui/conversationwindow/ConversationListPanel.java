@@ -122,7 +122,10 @@ public class ConversationListPanel extends JPanel implements ListCellRenderer<Co
                 return;
             }
 
-            Conversation toFocusConversation = conversationList.getSelectedValue().conversation;
+            ConversationContainer selectedContainer = conversationList.getSelectedValue();
+            Conversation toFocusConversation        = controller.setFocusedConversation(selectedContainer.conversation);
+
+            selectedContainer.setConversation(toFocusConversation);
             conversationViewPanel.setConversation(toFocusConversation);
         }
     }

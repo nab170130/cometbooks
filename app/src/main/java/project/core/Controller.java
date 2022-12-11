@@ -124,4 +124,11 @@ public class Controller
 
 		return focusedConversation;
 	}
+
+	public Conversation setFocusedConversation(Conversation focusedConversation_)
+	{
+		Conversation upToDateConversation 	= focusedConversation_.transaction.getConversation();
+		focusedConversation 				= upToDateConversation;
+		return focusedConversation;
+	}
 }

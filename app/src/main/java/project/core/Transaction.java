@@ -62,7 +62,7 @@ public class Transaction
 		}
 	}
 	
-	public long getTransactionID() //Do we need chnage the data-ttype over here as we delcared ID as a string and In class-diagram we kept return data-type as long
+	public long getTransactionID()
 	{
 		return this.transactionID;
 	}
