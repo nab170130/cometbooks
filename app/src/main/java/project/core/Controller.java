@@ -55,8 +55,7 @@ public class Controller
 		Transaction t 		= new Transaction(new Buyer(user), selectedListing); // need to add Buyer as member variable for controller class
 		focusedConversation = new Conversation(t);
 
-		Message initialMessage = new Message("Hello, I am interested in your listing.", t.transactionID, user);
-		focusedConversation.addMessage(initialMessage, user);
+		focusedConversation.addMessage("Hello, I am interested in your listing.", user);
 
 		return focusedConversation;
 	}
@@ -80,8 +79,7 @@ public class Controller
 	
 	public Conversation sendMessage(String enteredMessage)
 	{
-		Message initialMessage = new Message(enteredMessage, focusedConversation.ID, user);
-		focusedConversation.addMessage(initialMessage, user);
+		focusedConversation.addMessage(enteredMessage, user);
 
 		return focusedConversation;
 	}

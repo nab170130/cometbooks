@@ -1,9 +1,9 @@
 package project.core;
 
 import project.record.BookRecord;
-import java.util.ArrayList;
 import java.util.List;
 
+import project.actor.ThirdPartyVendor;
 import project.adapter.ListingDBAdapter;
 
 public class Textbook 
@@ -14,26 +14,32 @@ public class Textbook
 	public int edition;
 	public double suggestedPrice;
 	public String title;
-	public List<Textbook> textbook;
-	
-	public Textbook(BookRecord bookRecord)
-	{ 
-	  copyRecordAttributes(bookRecord);
-	  textbooks =new ArrayList<>();
-	  ListingDBAdapter.getInstance();	
-	}
-
-	public getMatchingListings()
-	{
-
-	}
 	
 	public Textbook()
 	{
 	}
 
+	public Textbook(BookRecord bookRecord)
+	{ 
+		copyRecordAttributes(bookRecord);
+	}
+
+	public void copyRecordAttributes(BookRecord bookRecord)
+	{
+		this.isbn 		= bookRecord.isbn;
+		this.year 		= bookRecord.year;
+		this.authors 	= bookRecord.authors;
+		this.edition 	= bookRecord.edition;
+		this.title 		= bookRecord.title;
+	}
+
+	public List<SalesListing> getMatchingListings()
+	{
+		return ListingDBAdapter.getInstance().getMatchingListings(this);
+	}
+	
 	public double setSuggestedPrice() 
 	{
-		return 0;
+		return ThirdPartyVendor.getSuggestedPrice(this);
 	}
 }

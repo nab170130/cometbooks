@@ -3,6 +3,7 @@ package project.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import project.adapter.MessageDBAdapter;
 import project.record.MessageRecord;
 
 public class Conversation 
@@ -15,20 +16,30 @@ public class Conversation
 	{
 	}
 
-	public Conversation(List<MessageRecord> messageRecords) 
+	public Conversation(List<MessageRecord> messageRecords, Transaction transaction_) 
 	{
-		
+		this.ID 			= transaction_.transactionID;
+		this.transaction 	= transaction_;
+		this.messages 		= new ArrayList<>();
+
+		for(MessageRecord record : messageRecords)
+		{
+			Message newMessage = new Message(record);
+			this.messages.add(newMessage);
+		}
 	}
 	
 	public Conversation(Transaction transaction_)
 	{
-		ID 			= transaction_.transactionID;
-		transaction = transaction_;
-		messages 	= new ArrayList<>();
+		this.ID 			= transaction_.transactionID;
+		this.transaction 	= transaction_;
+		this.messages 		= new ArrayList<>();
 	}
 
-	public void addMessage(Message enteredMessage, User user) 
+	public void addMessage(String enteredMessage, User user) 
 	{
-		
+		Message newMessageToAdd = new Message(enteredMessage, ID, user);
+		this.messages.add(newMessageToAdd);
+		MessageDBAdapter.getInstance().storeMessage(newMessageToAdd);
 	}
 }
