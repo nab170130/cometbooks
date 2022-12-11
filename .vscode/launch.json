@@ -16,7 +16,7 @@
             "name": "Launch Server",
             "request": "launch",
             "mainClass": "project.Server",
-            "projectName": "app"
+            "projectName": "server"
         },
         {
             "type": "java",
