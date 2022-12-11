@@ -1,5 +1,10 @@
 package project.core;
 
+import java.utli.ArrayList;
+import java.util.List;
+
+import project.adapter.ListingDBAdapter;
+
 public class Textbook 
 {
 	public long isbn;
@@ -8,11 +13,18 @@ public class Textbook
 	public int edition;
 	public double suggestedPrice;
 	public String title;
+	public List<Textbook> textbook;
 	
-//	public Textbook(BookRecord bookRecord)
-//	{ //BookRecord is a class
-//		
-//	}
+	public Textbook(BookRecord bookRecord)
+	{ 
+	  copyRecordAttributes(bookRecord);
+	  textbooks =new ArrayList<>();
+	  ListingDBAdapter.getInstance();	
+	}
+
+	public getMatchingListings(){
+
+	}
 	
 	public double setSuggestedPrice() 
 	{
